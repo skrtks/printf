@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   printf.h                                           :+:    :+:            */
+/*   c_print.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: skorteka <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/11 09:30:56 by skorteka      #+#    #+#                 */
-/*   Updated: 2019/12/11 09:31:00 by skorteka      ########   odam.nl         */
+/*   Created: 2019/12/11 12:04:32 by skorteka      #+#    #+#                 */
+/*   Updated: 2019/12/11 12:04:34 by skorteka      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <stdlib.h>
-# include <stdarg.h>
+#include "./libft/libft.h"
+#include "printf.h"
+#include <stdarg.h>
 
-typedef struct	s_flags
+void	c_print(va_list args, t_flags flags)
 {
-	int minus;
-	int zero;
-	int hash;
-	int apo;
-	int space;
-	int plus;
-	int width;
-	int prec;
-} 				t_flags;
+	char c;
+	c = va_arg(args, int);
 
-int ft_printf(const char *format, ...);
-void	c_print(va_list args, t_flags flags);
+	if (flags.minus == 0)
 
-# endif
+	ft_putchar_fd(c, 1);
+}
