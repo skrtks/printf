@@ -36,6 +36,7 @@ static t_flags	parse_flags(const char **format)
 	flags.hash = 0;
 	flags.apo = 0;
 	flags.space = 0;
+	flags.plus = 0;
 	flags.width = 0;
 	flags.prec = 0;
 	while (ft_strrchr("-0#\' +", *(*format)))
@@ -96,8 +97,5 @@ int	ft_printf(const char *format, ...)
 		format++;
 	}
 	va_end(args);
-
-	printf("width %i, prec %i\n", flags.width, flags.prec);
-
 	return (0);
 }

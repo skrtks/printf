@@ -13,13 +13,22 @@
 #include "./libft/libft.h"
 #include "printf.h"
 #include <stdarg.h>
+#include <unistd.h>
 
 void	c_print(va_list args, t_flags flags)
 {
 	char c;
+	int width;
 	c = va_arg(args, int);
 
+	width = 0;
+	if (flags.minus == 1)
+		write(1, &c, 1);
+	while (width < flags.width - 1)
+	{
+		write(1, " ", 1);
+		width++;
+	}
 	if (flags.minus == 0)
-
-	ft_putchar_fd(c, 1);
+		write(1, &c, 1);
 }
