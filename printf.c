@@ -86,6 +86,11 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (*format)
 	{
+		if (*format != '%')
+		{
+			write(1, format, 1);
+			format++;
+		}
 		if (*format == '%')
 		{
 			format++;
@@ -93,8 +98,6 @@ int	ft_printf(const char *format, ...)
 			parse_other(&format, args, &flags);
 			convert(&format, args, flags);
 		}
-		write(1, format, 1);
-		format++;
 	}
 	va_end(args);
 	return (0);

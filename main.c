@@ -8,17 +8,23 @@ int main(void)
 {
 
 	// MARK: C-conversion
-	ft_printf("[m: [test run %c]]\n", 'x');
-	printf("[s: [test run %c]]\n", 'x');
+	// ft_printf("[m: [test run %c]]\n", 'x');
+	// printf("[s: [test run %c]]\n", 'x');
 
-	ft_printf("[m: [test run %5c]]\n", 'x');
-	printf("[s: [test run %5c]]\n", 'x');
+	// ft_printf("[m: [test run %5c]]\n", 'x');
+	// printf("[s: [test run %5c]]\n", 'x');
 
-	ft_printf("[m: [test run %*c]]\n", 4, 'x');
-	printf("[s: [test run %*c]]\n", 4, 'x');
+	// ft_printf("[m: [test run %*c]]\n", 4, 'x');
+	// printf("[s: [test run %*c]]\n", 4, 'x');
 
-	ft_printf("[m: [test run %-4c]]\n", 'x');
-	printf("[s: [test run %-4c]]\n", 'x');
+	// ft_printf("[m: [test run %-4c]]\n", 'x');
+	// printf("[s: [test run %-4c]]\n", 'x');
+
+	// ft_printf("[m: [test run %5c and another one %c]]\n", 'x', 'h');
+	// printf("[s: [test run %5c and another one %c]]\n", 'x', 'h');
+
+	ft_printf("[m: [%c%c%c%c%c]]\n", 'x', 'h', 's', 'w', 'q');
+	printf("[s: [%c%c%c%c%c]]\n", 'x', 'h', 's', 'w', 'q');
 
 	ft_printf("[m: [test run %5c and another one %c]]\n", 'x', 'h');
 	printf("[s: [test run %5c and another one %c]]\n", 'x', 'h');

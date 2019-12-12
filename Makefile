@@ -13,7 +13,7 @@
 SRCS = c_print.c printf.c main.c
 CC = gcc
 CFLAGS = -I. -Wall -Werror -Wextra
-NAME = printf.a
+NAME = libftprintf.a
 OBJS := $(SRCS:.c=.o)
 
 all: $(NAME)
