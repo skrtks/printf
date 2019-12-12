@@ -31,4 +31,23 @@ void	c_print(va_list args, t_flags flags)
 	}
 	if (flags.minus == 0)
 		write(1, &c, 1);
+
+	// char c;
+	// char *width;
+	// c = va_arg(args, int);
+
+	// if (flags.minus == 1)
+	// 		write(1, &c, 1);
+	// if (flags.width != 0)
+	// {
+	// 	width = malloc((flags.width) * sizeof(char));
+	// 	if (!width)
+	// 	return ;
+	// 	width[flags.width - 1] = '\0';
+	// 	ft_memset(width, ' ', flags.width - 1);
+	// 	ft_putstr_fd(width, 1);
+	// 	free(width);
+	// }
+	// if (flags.minus == 0)
+	// 	write(1, &c, 1);
 }
