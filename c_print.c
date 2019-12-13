@@ -18,36 +18,21 @@
 void	c_print(va_list args, t_flags flags)
 {
 	char c;
-	int width;
+	char *width;
 	c = va_arg(args, int);
 
-	width = 0;
 	if (flags.minus == 1)
-		write(1, &c, 1);
-	while (width < flags.width - 1)
+			write(1, &c, 1);
+	if (flags.width != 0)
 	{
-		write(1, " ", 1);
-		width++;
+		width = malloc((flags.width) * sizeof(char));
+		if (!width)
+		return ;
+		width[flags.width - 1] = '\0';
+		ft_memset(width, ' ', flags.width - 1);
+		ft_putstr_fd(width, 1);
+		free(width);
 	}
 	if (flags.minus == 0)
 		write(1, &c, 1);
-
-	// char c;
-	// char *width;
-	// c = va_arg(args, int);
-
-	// if (flags.minus == 1)
-	// 		write(1, &c, 1);
-	// if (flags.width != 0)
-	// {
-	// 	width = malloc((flags.width) * sizeof(char));
-	// 	if (!width)
-	// 	return ;
-	// 	width[flags.width - 1] = '\0';
-	// 	ft_memset(width, ' ', flags.width - 1);
-	// 	ft_putstr_fd(width, 1);
-	// 	free(width);
-	// }
-	// if (flags.minus == 0)
-	// 	write(1, &c, 1);
 }

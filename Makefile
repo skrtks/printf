@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = c_print.c printf.c main.c
+SRCS = c_print.c printf.c
 CC = gcc
 CFLAGS = -I. -Wall -Werror -Wextra
 NAME = libftprintf.a
@@ -20,19 +20,19 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	cd libft && make
+	cp ./libft/libft.a .
+	mv libft.a $(NAME)
 	ar rc $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-test: $(OBJS)
-	cd libft && make
-	$(CC) $(CFLAGS) -g -L./libft -lft $(SRCS) -o printf
+test: $(OBJS) $(NAME)
+	$(CC) $(CFLAGS) -g -L. -lftprintf $(SRCS) main.c -o printf
 
-asan: $(OBJS)
-	cd libft && make
+asan: $(OBJS) $(NAME)
 	$(CC) $(CFLAGS) -fsanitize=address -O1 -fno-omit-frame-pointer \
-	-g -L./libft -lft $(SRCS) -o printf
+	-g -L. -lftprintf $(SRCS) main.c -o printf
 
 .PHONY: clean fclean re all test
 

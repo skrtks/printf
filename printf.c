@@ -78,6 +78,38 @@ static void parse_other(const char **format, va_list args, t_flags *flags)
 		(*format)++;
 }
 
+static size_t	get_index(const char *str, char c)
+{
+	size_t l;
+
+	l = 0;
+	while (str[l] != '\0' && str[l] != c)
+		l++;
+	return (l);
+}
+
+static int write_string(const char **format)
+{
+	int p_ind;
+	int s_ind;
+	char *str;
+
+	p_ind = get_index(*format, '%');
+	str = malloc((p_ind + 1) * sizeof(char));
+	if (!str)
+		return (0);
+	s_ind = 0;
+	while (*(*format) != '%' && *(*format))
+	{
+		str[s_ind] = *(*format);
+		s_ind++;
+		(*format)++;
+	}
+	ft_putstr_fd(str, 1);
+	free(str);
+	return (1);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list args;
@@ -88,8 +120,11 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			write(1, format, 1);
-			format++;
+			// write(1, format, 1);
+			// format++;
+			if (!write_string(&format))
+				return (0);
+
 		}
 		if (*format == '%')
 		{
