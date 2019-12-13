@@ -23,7 +23,7 @@ void	c_print(va_list args, t_flags flags)
 
 	if (flags.minus == 1)
 			write(1, &c, 1);
-	if (flags.width != 0)
+	if (flags.width != -1)
 	{
 		width = malloc((flags.width) * sizeof(char));
 		if (!width)
@@ -33,6 +33,6 @@ void	c_print(va_list args, t_flags flags)
 		ft_putstr_fd(width, 1);
 		free(width);
 	}
-	if (flags.minus == 0)
+	if (flags.minus == -1)
 		write(1, &c, 1);
 }

@@ -31,14 +31,14 @@ static t_flags	parse_flags(const char **format)
 {
 	t_flags flags;
 
-	flags.minus = 0;
-	flags.zero = 0;
-	flags.hash = 0;
-	flags.apo = 0;
-	flags.space = 0;
-	flags.plus = 0;
-	flags.width = 0;
-	flags.prec = 0;
+	flags.minus = -1;
+	flags.zero = -1;
+	flags.hash = -1;
+	flags.apo = -1;
+	flags.space = -1;
+	flags.plus = -1;
+	flags.width = -1;
+	flags.prec = -1;
 	while (ft_strrchr("-0#\' +", *(*format)))
 	{
 		if (*(*format) == '-')
@@ -98,6 +98,7 @@ static int write_string(const char **format)
 	str = malloc((p_ind + 1) * sizeof(char));
 	if (!str)
 		return (0);
+	str[p_ind] = '\0';
 	s_ind = 0;
 	while (*(*format) != '%' && *(*format))
 	{
@@ -120,8 +121,6 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			// write(1, format, 1);
-			// format++;
 			if (!write_string(&format))
 				return (0);
 
