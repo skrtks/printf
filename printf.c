@@ -22,8 +22,8 @@ static void	convert(const char **format, va_list args, t_flags flags)
 {
 	if (*(*format) == 'c')
 		c_print(args, flags);
-	// if (*(*format) == 's')
-	// 	s_print(args);
+	if (*(*format) == 's')
+		s_print(args, flags);
 	(*format)++;
 }
 

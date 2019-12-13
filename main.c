@@ -42,8 +42,14 @@ int main(void)
 	ft_printf("[m: [%2.5s]]\n", "hallo");
 	printf("[s: [%2.5s]]\n", "hallo");
 
-	ft_printf("[m: [%2.6s]]\n", "hallo");
-	printf("[s: [%2.6s]]\n", "hallo");
+	ft_printf("[m: [%3.3s]]\n", "hallo");
+	printf("[s: [%3.3s]]\n", "hallo");
+
+	ft_printf("[m: [%2.3s]]\n", "hallo");
+	printf("[s: [%2.3s]]\n", "hallo");
+
+	ft_printf("[m: [%2.10s]]\n", "hallo");
+	printf("[s: [%2.10s]]\n", "hallo");
 
 	ft_printf("[m: [%8.6s]]\n", "hallo");
 	printf("[s: [%8.6s]]\n", "hallo");
@@ -54,9 +60,11 @@ int main(void)
 	ft_printf("[m: [%8.3s]]\n", "hallo");
 	printf("[s: [%8.3s]]\n", "hallo");
 
-	ft_printf("[m: [%3.3s]]\n", "hallo");
-	printf("[s: [%3.3s]]\n", "hallo");
+	ft_printf("[m: [%8.0s]]\n", "hallo");
+	printf("[s: [%8.0s]]\n", "hallo");
 
+	ft_printf("[m: [%8s]]\n", "hallo");
+	printf("[s: [%8s]]\n", "hallo");
 
 	return (0);
 }
