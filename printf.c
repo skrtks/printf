@@ -18,13 +18,17 @@
 
 #include <stdio.h>
 
-static void	convert(const char **format, va_list args, t_flags flags)
+static int	convert(const char **format, va_list args, t_flags flags)
 {
+	int output;
+
+	output = 0;
 	if (*(*format) == 'c')
-		c_print(args, flags);
+		output += c_print(args, flags);
 	if (*(*format) == 's')
-		s_print(args, flags);
+		output += s_print(args, flags);
 	(*format)++;
+	return(output);
 }
 
 static t_flags	parse_flags(const char **format)
@@ -110,31 +114,32 @@ static int write_string(const char **format)
 	}
 	ft_putstr_fd(str, 1);
 	free(str);
-	return (1);
+	return (s_ind);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list args;
 	t_flags flags;
+	int output;
 
+	output = 0;
 	va_start(args, format);
 	while (*format)
 	{
 		if (*format != '%')
 		{
-			if (!write_string(&format))
-				return (0);
-
+			// TODO: think about error handling
+			output += write_string(&format);
 		}
 		if (*format == '%')
 		{
 			format++;
 			flags = parse_flags(&format);
 			parse_other(&format, args, &flags);
-			convert(&format, args, flags);
+			output += convert(&format, args, flags);
 		}
 	}
 	va_end(args);
-	return (0);
+	return (output);
 }

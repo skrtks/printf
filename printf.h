@@ -28,7 +28,7 @@ typedef struct	s_flags
 } 				t_flags;
 
 int ft_printf(const char *format, ...);
-void	c_print(va_list args, t_flags flags);
-void	s_print(va_list args, t_flags flags);
+int	c_print(va_list args, t_flags flags);
+int	s_print(va_list args, t_flags flags);
 
 # endif

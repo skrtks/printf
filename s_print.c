@@ -21,19 +21,20 @@ width < prec: prec aantal char printen onafhankelijk van width
 width == prec: prec aantal char printen
 */
 
-void	s_print(va_list args, t_flags flags)
+int	s_print(va_list args, t_flags flags)
 {
 	char *str;
-	int len;
 	char *width;
+	int len;
+	int output;
+
+	output = 0;
 	str = va_arg(args, char*);
 	if (str == NULL)
 		str = "(null)";
 	len = ft_strlen(str);
-
 	if (flags.prec != -1)
 				len = (flags.prec > len ? len : flags.prec);
-
 	if (flags.width == -1 && flags.prec == -1)
 		ft_putstr_fd(str, 1);
 	else if (flags.prec > flags.width)
@@ -45,8 +46,9 @@ void	s_print(va_list args, t_flags flags)
 		if (flags.width != -1 && (flags.width - len + 1) > 0)
 		{
 			width = malloc((flags.width - len + 1) * sizeof(char));
+			// TODO: think about error checking
 			if (!width)
-				return ;
+				return (output);
 			width[flags.width - len] = '\0';
 			ft_memset(width, ' ', flags.width - len);
 			ft_putstr_fd(width, 1);
@@ -55,4 +57,5 @@ void	s_print(va_list args, t_flags flags)
 		if (flags.minus == -1)
 			write(1, str, len);
 	}
+	return (flags.width == -1 ? len : flags.width);
 }
