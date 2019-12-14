@@ -27,39 +27,32 @@ void	s_print(va_list args, t_flags flags)
 	int len;
 	char *width;
 	str = va_arg(args, char*);
+	if (str == NULL)
+		str = "(null)";
 	len = ft_strlen(str);
+
+	if (flags.prec != -1)
+				len = (flags.prec > len ? len : flags.prec);
 
 	if (flags.width == -1 && flags.prec == -1)
 		ft_putstr_fd(str, 1);
-	else if (flags.prec >= flags.width)
-	{
-		len = (flags.prec > len ? len : flags.prec);
+	else if (flags.prec > flags.width)
 		write(1, str, len);
-	}
-	else if (flags.prec < flags.width)
+	else if (flags.prec <= flags.width)
 	{
 		if (flags.minus == 1)
-		{
-			len = (flags.prec > len ? len : flags.prec);
 			write(1, str, len);
-		}
-		if (flags.width != 0)
+		if (flags.width != -1 && (flags.width - len + 1) > 0)
 		{
-			if (flags.prec != -1)
-				len = (flags.prec > len ? len : flags.prec);
 			width = malloc((flags.width - len + 1) * sizeof(char));
 			if (!width)
-			return ;
+				return ;
 			width[flags.width - len] = '\0';
 			ft_memset(width, ' ', flags.width - len);
 			ft_putstr_fd(width, 1);
 			free(width);
 		}
 		if (flags.minus == -1)
-		{
-			if (flags.prec != -1)
-				len = (flags.prec > len ? len : flags.prec);
 			write(1, str, len);
-		}
 	}
 }

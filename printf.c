@@ -71,6 +71,8 @@ static void parse_other(const char **format, va_list args, t_flags *flags)
 		(*format)++;
 		if (*(*format) == '*')
 			flags->prec = va_arg(args, int);
+		else if (ft_strrchr("cspdiuxX%", *(*format)))
+			flags->prec = 0;
 		else if (!ft_strrchr("cspdiuxX%", *(*format)))
 			flags->prec = ft_atoi(*format);
 	}
