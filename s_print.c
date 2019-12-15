@@ -16,9 +16,10 @@
 #include <unistd.h>
 
 /*
-width > prec: width printen met daarin prec aantal char uit string
-width < prec: prec aantal char printen onafhankelijk van width
-width == prec: prec aantal char printen
+Als w en p -1 zijn dan s printen
+als p en niet w dan checken of p langer is dan l en l of p char printen
+als w en niew p dan w - l + 1 printen mits groter dan 0
+als p en w dan 
 */
 
 int	s_print(va_list args, t_flags flags)
@@ -36,13 +37,20 @@ int	s_print(va_list args, t_flags flags)
 	if (flags.prec != -1)
 				len = (flags.prec > len ? len : flags.prec);
 	if (flags.width == -1 && flags.prec == -1)
+	{
 		ft_putstr_fd(str, 1);
+		return (len);
+	}
 	else if (flags.prec > flags.width)
+	{
 		write(1, str, len);
+		return (flags.prec > len ? len : flags.prec);
+	}
 	else if (flags.prec <= flags.width)
 	{
 		if (flags.minus == 1)
 			write(1, str, len);
+		output = len;
 		if (flags.width != -1 && (flags.width - len + 1) > 0)
 		{
 			width = malloc((flags.width - len + 1) * sizeof(char));
@@ -53,9 +61,10 @@ int	s_print(va_list args, t_flags flags)
 			ft_memset(width, ' ', flags.width - len);
 			ft_putstr_fd(width, 1);
 			free(width);
+			output = flags.width;
 		}
 		if (flags.minus == -1)
 			write(1, str, len);
 	}
-	return (flags.width == -1 ? len : flags.width);
+	return (output);
 }

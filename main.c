@@ -6,16 +6,7 @@
 
 int main(void)
 {
-	printf("%i\n", ft_printf("[s: [%6s]]\n", "test"));
-	printf("%i\n", printf("[s: [%6s]]\n", "test"));
-
-	printf("%i\n", ft_printf("[s: [%2.6s]]\n", "test"));
-	printf("%i\n", printf("[s: [%2.6s]]\n", "test"));
-
-	printf("%i\n", ft_printf("[s: [%.s]]\n", "test"));
-	printf("%i\n", printf("[s: [%.s]]\n", "test"));
-
-	printf("%i\n", ft_printf("[s: [%2.2s]]\n", "test"));
-	printf("%i\n", printf("[s: [%2.2s]]\n", "test"));
+	printf("%i\n", printf("[s: [%-8.6s]]\n", "3abc!\012@#$%^&*(_)(*_-±§	"));
+	printf("%i\n", ft_printf("[s: [%-8.6s]]\n", "3abc!\012@#$%^&*(_)(*_-±§	"));
 	return (0);
 }
