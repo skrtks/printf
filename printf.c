@@ -15,18 +15,16 @@
 #include "./libft/libft.h"
 #include <unistd.h>
 
-
-#include <stdio.h>
-
 static int	convert(const char **format, va_list args, t_flags flags)
 {
 	int output;
-
-	output = 0;
+	
 	if (*(*format) == 'c')
-		output += c_print(args, flags);
+		output = c_print(args, flags);
 	if (*(*format) == 's')
-		output += s_print(args, flags);
+		output = s_print(args, flags);
+	if (*(*format) == 'i')
+		output = i_print(args, flags);
 	(*format)++;
 	return(output);
 }

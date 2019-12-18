@@ -30,5 +30,6 @@ typedef struct	s_flags
 int ft_printf(const char *format, ...);
 int	c_print(va_list args, t_flags flags);
 int	s_print(va_list args, t_flags flags);
+int	i_print(va_list args, t_flags flags);
 
 # endif

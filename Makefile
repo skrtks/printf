@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = c_print.c s_print.c printf.c
+SRCS = c_print.c s_print.c i_print.c printf.c
 CC = gcc
 CFLAGS = -I. -Wall -Werror -Wextra
 NAME = libftprintf.a

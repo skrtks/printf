@@ -15,21 +15,32 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-/*
-Als w en p -1 zijn dan s printen
-als p en niet w dan checken of p langer is dan l en l of p char printen
-als w en niew p dan w - l + 1 printen mits groter dan 0
-als p en w dan 
-*/
+static int print_width_prec(t_flags flags, char *str, int len)
+{
+	char *width;
+	if (flags.minus == 1)
+		write(1, str, len);
+	if (flags.width != -1 && (flags.width - len + 1) > 0)
+	{
+		width = malloc((flags.width - len + 1) * sizeof(char));
+		// TODO: think about error checking
+		if (!width)
+			return (0);
+		width[flags.width - len] = '\0';
+		ft_memset(width, ' ', flags.width - len);
+		ft_putstr_fd(width, 1);
+		free(width);
+	}
+	if (flags.minus == -1)
+		write(1, str, len);
+	return ((flags.width != -1 && (flags.width - len + 1) > 0) ? flags.width : len);
+}
 
 int	s_print(va_list args, t_flags flags)
 {
 	char *str;
-	char *width;
 	int len;
-	int output;
 
-	output = 0;
 	str = va_arg(args, char*);
 	if (str == NULL)
 		str = "(null)";
@@ -41,30 +52,7 @@ int	s_print(va_list args, t_flags flags)
 		ft_putstr_fd(str, 1);
 		return (len);
 	}
-	else if (flags.prec > flags.width)
-	{
-		write(1, str, len);
-		return (flags.prec > len ? len : flags.prec);
-	}
-	else if (flags.prec <= flags.width)
-	{
-		if (flags.minus == 1)
-			write(1, str, len);
-		output = len;
-		if (flags.width != -1 && (flags.width - len + 1) > 0)
-		{
-			width = malloc((flags.width - len + 1) * sizeof(char));
-			// TODO: think about error checking
-			if (!width)
-				return (output);
-			width[flags.width - len] = '\0';
-			ft_memset(width, ' ', flags.width - len);
-			ft_putstr_fd(width, 1);
-			free(width);
-			output = flags.width;
-		}
-		if (flags.minus == -1)
-			write(1, str, len);
-	}
-	return (output);
+	else
+		return (print_width_prec(flags, str, len));
+	return (0);
 }
