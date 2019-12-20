@@ -76,10 +76,10 @@ static void		fill_width(t_flags flags, t_length len, int *i, char **str)
 
 static char		*create_string(t_flags flags, t_length len, long num)
 {
-	char *str;
-	char *num_str;
-	int i;
-	int j;
+	char	*str;
+	char	*num_str;
+	int		i;
+	int		j;
 
 	str = malloc((len.total_len + 1) * sizeof(char));
 	if (!str)
@@ -104,14 +104,17 @@ static char		*create_string(t_flags flags, t_length len, long num)
 
 int				i_print(va_list args, t_flags flags)
 {
-	long num;
-	t_length len;
-	char *str;
+	long		num;
+	t_length	len;
+	char		*str;
 	
 	num = (long)va_arg(args, int);
 	len = get_length(flags, num);
 	str = create_string(flags, len, num);
 	if (!str)
 		return (0);
-	return (write(1, str, ft_strlen(str)));
+	write(1, str, ft_strlen(str));
+	if (str)
+		free(str);
+	return (ft_strlen(str));
 }

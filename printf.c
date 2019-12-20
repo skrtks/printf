@@ -23,7 +23,7 @@ static int	convert(const char **format, va_list args, t_flags flags)
 		output = c_print(args, flags);
 	if (*(*format) == 's')
 		output = s_print(args, flags);
-	if (*(*format) == 'i')
+	if (*(*format) == 'i' || *(*format) == 'd')
 		output = i_print(args, flags);
 	(*format)++;
 	return(output);
