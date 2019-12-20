@@ -18,7 +18,7 @@
 typedef struct	s_flags
 {
 	int minus;
-	char zero;
+	int zero;
 	int hash;
 	int apo;
 	int space;

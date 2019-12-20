@@ -34,7 +34,7 @@ static t_flags	parse_flags(const char **format)
 	t_flags flags;
 
 	flags.minus = -1;
-	flags.zero = ' ';
+	flags.zero = -1;
 	flags.hash = -1;
 	flags.apo = -1;
 	flags.space = -1;
@@ -46,7 +46,7 @@ static t_flags	parse_flags(const char **format)
 		if (*(*format) == '-')
 			flags.minus = 1;
 		if (*(*format) == '0')
-			flags.zero = '0';
+			flags.zero = 1;
 		if (*(*format) == '#')
 			flags.hash = 1;
 		if (*(*format) == '\'')
