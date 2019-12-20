@@ -18,7 +18,7 @@
 typedef struct	s_flags
 {
 	int minus;
-	int zero;
+	char zero;
 	int hash;
 	int apo;
 	int space;
@@ -26,6 +26,16 @@ typedef struct	s_flags
 	int width;
 	int prec;
 } 				t_flags;
+
+typedef struct s_length {
+	int numlen;
+	int p_numlen;
+	int t_numlen;
+	int p_padlen;
+	int w_padlen;
+	int total_len;
+	char sign;
+}		t_length;
 
 int ft_printf(const char *format, ...);
 int	c_print(va_list args, t_flags flags);

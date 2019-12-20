@@ -21,6 +21,23 @@
 3. If !0 flag && prec <= len then sign is printed before len.
 */
 
+
+
+static int	int_length(long n)
+{
+	long	len;
+
+	len = 0;
+	if (n < 0)
+		n = n * -1;
+	while (n >= 1)
+	{
+		n = n / 10;
+		len++;
+	}
+	return (len);
+}
+
 static char get_sign(int num)
 {
 	if (num < 0)
@@ -29,24 +46,32 @@ static char get_sign(int num)
 		return('+');
 }
 
+static t_length get_length(t_flags flags, long num)
+{
+	t_length len;
+	len.sign = get_sign(num);
+	len.numlen = int_length(num);
+	len.p_padlen = ((flags.prec != -1 && flags.prec >= len.numlen) ? flags.prec - len.numlen : 0);
+	len.p_numlen = len.numlen + len.p_padlen;
+	len.t_numlen = (len.sign == '-' ? len.p_numlen + 1 : len.p_numlen);
+	len.w_padlen = ((flags.width != -1 && flags.width >= len.t_numlen) ? flags.width - len.t_numlen : 0);
+	len.total_len = len.t_numlen + len.w_padlen;	
+	return (len);
+}
+
+static int create_string(t_flags flags, t_length len, long num)
+{
+	char *str;
+
+	str = 
+}
+
 int	i_print(va_list args, t_flags flags)
 {
-	char sign;
-	char *str;
-	int num;
-	int len;
-
-	num = va_arg(args, int);
-	str = ft_itoa(num);
-	len = ft_strlen(str);
-	sign = get_sign(num);
-	if (flags.width <= len && flags.prec <= len)
-	{
-		if (flags.plus == 1 && sign == '+' && str[0] != '+')
-			ft_putchar_fd(sign, 1);
-		write(1, str, len);
-	}
+	long num;
+	t_length len;
 	
-
+	num = (long)va_arg(args, int);
+	len = get_length(flags, num);
 	return (0);
 }
