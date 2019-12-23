@@ -42,11 +42,13 @@ int ft_printf(const char *format, ...);
 int	c_print(va_list args, t_flags flags);
 int	s_print(va_list args, t_flags flags);
 int	i_print(va_list args, t_flags flags);
+int	x_print(va_list args, t_flags flags);
+int	perc_print(t_flags flags);
 
 int		int_length(long n);
 char	*ft_itoa_base(long long value, int base);
 char	*ft_itoa_uns(int n);
 int		u_print(va_list args, t_flags flags);
-int		x_print(va_list args, t_flags flags);
+
 
 # endif
