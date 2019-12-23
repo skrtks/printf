@@ -27,6 +27,8 @@ static int	convert(const char **format, va_list args, t_flags flags)
 		output = i_print(args, flags);
 	if (*(*format) == 'u')
 		output = u_print(args, flags);
+	if (*(*format) == 'X' || *(*format) == 'x')
+		output = x_print(args, flags);
 	(*format)++;
 	return(output);
 }

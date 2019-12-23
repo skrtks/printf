@@ -6,186 +6,52 @@
 int main(void)
 {
 
-	printf("Test %s\n", ft_itoa_base(0, 10));
-	// ft_printf("[m: [this % i number]]\n", -267);
-	// printf("[s: [this % i number]]\n", -267);
-	// printf("---\n");
+	int n = 399;
+    int y = 0xABCDEF;
 
-	// ft_printf("[m: [%+-5.i]]\n", 0);
-	// printf("[s: [%+-5.i]]\n", 0);
-	// printf("---\n");
+    /* Upper and lower case. */
 
-	// ft_printf("[m: [%.i]]\n", 0);
-	// printf("[s: [%.i]]\n", 0);
-	// printf("---\n");
+    ft_printf ("m %X hexadecimal with upper case letters.\n", n);
+    printf ("s %X hexadecimal with upper case letters.\n", n);
 
-	// ft_printf("[m: [%+5.i]]\n", 0);
-	// printf("[s: [%+5.i]]\n", 0);
-	// printf("---\n");
+    ft_printf ("m %x hexadecimal with lower case letters.\n", n);
+    printf ("s %x hexadecimal with lower case letters.\n", n);
 
-	// ft_printf("[m: [%3i]]\n", 0);
-	// printf("[s: [%3i]]\n", 0);
-	// printf("---\n");
 
-	// ft_printf("[m: [%i]\n", 5);
-	// printf("[s: [%i]\n", 5);
-	// printf("---\n");
+    /* Different kinds of padding. */
 
-	// ft_printf("[m: [%i]\n", 5);
-	// printf("[s: [%i]\n", 5);
-	// printf("---\n");
+    ft_printf ("m <%8x> hexadecimal padded with blanks to width 8.\n", n);
+    printf ("s <%8x> hexadecimal padded with blanks to width 8.\n", n);
 
-	// ft_printf("[m: [%.2i]]\n", -12);
-	// printf("[s: [%.2i]]\n", -12);
-	// printf("---\n");
+    ft_printf ("m %04x hexadecimal padded with four leading zeros.\n", n);
+    printf ("s %04x hexadecimal padded with four leading zeros.\n", n);
 
-	// ft_printf("[m: [%2i]]\n", -12);
-	// printf("[s: [%2i]]\n", -12);
-	// printf("---\n");
+    ft_printf ("m %08x padded with eight leading zeros.\n", n);
+    printf ("s %08x padded with eight leading zeros.\n", n);
 
-	// ft_printf("[m: [%.2i]]\n", 12);
-	// printf("[s: [%.2i]]\n", 12);
-	// printf("---\n");
 
-	// ft_printf("[m: [%1i]]\n", 12);
-	// printf("[s: [%1i]]\n", 12);
-	// printf("---\n");
+    /* Hash mark, #, adds 0x to number. */
 
-	// ft_printf("[m: [%1i]]\n", 12);
-	// printf("[s: [%1i]]\n", 12);
-	// printf("---\n");
+    ft_printf ("m %#x automatically add 0x.\n", y);
+    printf ("s %#x automatically add 0x.\n", y);
 
-	// ft_printf("[m: [%.4i]]\n", 12);
-	// printf("[s: [%.4i]]\n", 12);
-	// printf("---\n");
+    ft_printf ("m %#X, capital X, automatically add 0X.\n", y);
+    printf ("s %#X, capital X, automatically add 0X.\n", y);
 
-	// ft_printf("[m: [%.4i]]\n", 12);
-	// printf("[s: [%.4i]]\n", 12);
-	// printf("---\n");
+    ft_printf ("m %#X, but don't add 0X if zero.\n", 0);
+    printf ("s %#X, but don't add 0X if zero.\n", 0);
 
-	// ft_printf("[m: [%4i]]\n", 12);
-	// printf("[s: [%4i]]\n", 12);
-	// printf("---\n");
 
-	// ft_printf("[m: [%4i]]\n", -12);
-	// printf("[s: [%4i]]\n", -12);
-	// printf("---\n");
+    /* Hash mark plus padding. */
 
-	// ft_printf("[m: [%4.4i]]\n", 12);
-	// printf("[s: [%4.4i]]\n", 12);
-	// printf("---\n");
+    ft_printf ("m %#8x - no padding is added with #.\n", y);
+    printf ("s %#8x - no padding is added with #.\n", y);
 
-	// ft_printf("[m: [%4.4i]]\n", 12);
-	// printf("[s: [%4.4i]]\n", 12);
-	// printf("---\n");
+    ft_printf ("m %#8X - no padding is added with #.\n", y);
+    printf ("s %#8X - no padding is added with #.\n", y);
 
-	// ft_printf("[m: [%4.4i]]\n", 12);
-	// printf("[s: [%4.4i]]\n", 12);
-	// printf("---\n");
-
-	// ft_printf("[m: [%4.4i]]\n", -12);
-	// printf("[s: [%4.4i]]\n", -12);
-	// printf("---\n");
-
-	// ft_printf("[m: [%-3.4i]]\n", 12);
-	// printf("[s: [%-3.4i]]\n", 12);
-	// printf("---\n");
-
-	// ft_printf("[m: [%-4.3i]]\n", 12);
-	// printf("[s: [%-4.3i]]\n", 12);
-	// printf("---\n");
-
-	// ft_printf("[m: [%07i]]\n", -54);
-	// printf("[s: [%07i]]\n", -54);
-	// printf("---\n");
-
-	// ft_printf("[m: [%8.5i]]\n", 34);
-	// printf("[s: [%8.5i]]\n", 34);
-	// printf("---\n");
-
-	// ft_printf("[m: [%05i]]\n", 234);
-	// printf("[s: [%05i]]\n", 234);
-	// printf("---\n");
-
-	// ft_printf("[m: [%10.5i]]\n", -216);
-	// printf("[s: [%10.5i]]\n", -216);
-	// printf("---\n");
-
-	
-	ft_printf("[m: [this %u number]]\n", -267);
-	printf("[m: [this %u number]]\n", -267);
-	
-	ft_printf("[m: [%5.u]]\n", 0);
-	printf("[m: [%5.u]]\n", 0);
-	
-	ft_printf("[m: [%.u]]\n", 0);
-	printf("[m: [%.u]]\n", 0);
-	
-	ft_printf("[m: [%5.u]]\n", 0);
-	printf("[m: [%5.u]]\n", 0);
-	
-	ft_printf("[m: [%3u]]\n", 0);
-	printf("[m: [%3u]]\n", 0);
-	
-	ft_printf("[m: [%u]\n", 5);
-	printf("[m: [%u]\n", 5);
-	
-	ft_printf("[m: [%u]\n", 5);
-	printf("[m: [%u]\n", 5);
-	
-	ft_printf("[m: [%.2u]]\n", -12);
-	printf("[m: [%.2u]]\n", -12);
-	
-	ft_printf("[m: [%2u]]\n", -12);
-	printf("[m: [%2u]]\n", -12);
-	
-	ft_printf("[m: [%.2u]]\n", 12);
-	printf("[m: [%.2u]]\n", 12);
-	
-	ft_printf("[m: [%1u]]\n", 12);
-	printf("[m: [%1u]]\n", 12);
-	
-	ft_printf("[m: [%1u]]\n", 12);
-	printf("[m: [%1u]]\n", 12);
-	
-	ft_printf("[m: [%.4u]]\n", 12);
-	printf("[m: [%.4u]]\n", 12);
-	
-	ft_printf("[m: [%.4u]]\n", 12);
-	printf("[m: [%.4u]]\n", 12);
-	
-	ft_printf("[m: [%4u]]\n", 12);
-	printf("[m: [%4u]]\n", 12);
-	
-	ft_printf("[m: [%4u]]\n", -12);
-	printf("[m: [%4u]]\n", -12);
-	
-	ft_printf("[m: [%4.4u]]\n", 12);
-	printf("[m: [%4.4u]]\n", 12);
-	
-	ft_printf("[m: [%4.4u]]\n", 12);
-	printf("[m: [%4.4u]]\n", 12);
-	
-	ft_printf("[m: [%4.4u]]\n", 12);
-	printf("[m: [%4.4u]]\n", 12);
-	
-	ft_printf("[m: [%4.4u]]\n", -12);
-	printf("[m: [%4.4u]]\n", -12);
-	
-	ft_printf("[m: [%-3.4u]]\n", 12);
-	printf("[m: [%-3.4u]]\n", 12);
-	
-	ft_printf("[m: [%-4.3u]]\n", 12);
-	printf("[m: [%-4.3u]]\n", 12);
-	
-	ft_printf("[m: [%07u]]\n", -54);
-	printf("[m: [%07u]]\n", -54);
-	
-	ft_printf("[m: [%8.5u]]\n", 34);
-	printf("[m: [%8.5u]]\n", 34);
-	
-	ft_printf("[m: [%05u]]\n", 234);
-	printf("[m: [%05u]]\n", 234);
+    ft_printf ("m %#08X - padding is added with 0, but don't add 0X.\n", 0);
+    printf ("s %#08X - padding is added with 0, but don't add 0X.\n", 0);
 
 	return (0);
 }
