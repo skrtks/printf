@@ -25,6 +25,8 @@ static int	convert(const char **format, va_list args, t_flags flags)
 		output = s_print(args, flags);
 	if (*(*format) == 'i' || *(*format) == 'd')
 		output = i_print(args, flags);
+	if (*(*format) == 'u')
+		output = u_print(args, flags);
 	(*format)++;
 	return(output);
 }
@@ -41,6 +43,7 @@ static t_flags	parse_flags(const char **format)
 	flags.plus = -1;
 	flags.width = -1;
 	flags.prec = -1;
+	flags.conv = 'q';
 	while (ft_strrchr("-0#\' +", *(*format)))
 	{
 		if (*(*format) == '-')
@@ -135,6 +138,7 @@ int	ft_printf(const char *format, ...)
 			format++;
 			flags = parse_flags(&format);
 			parse_other(&format, args, &flags);
+			flags.conv = *format;
 			output += convert(&format, args, flags);
 		}
 	}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   i_print.c                                          :+:    :+:            */
+/*   u_print.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: skorteka <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/17 14:47:14 by skorteka      #+#    #+#                 */
-/*   Updated: 2019/12/17 14:47:16 by skorteka      ########   odam.nl         */
+/*   Created: 2019/12/23 09:27:05 by skorteka      #+#    #+#                 */
+/*   Updated: 2019/12/23 09:27:07 by skorteka      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-static t_length	get_length(t_flags flags, long num)
+static t_length	get_length(t_flags flags, unsigned int num)
 {
 	t_length len;
-	len.sign = (num < 0 ? '-' : '+');
-	len.sign = ((flags.space == 1 && flags.plus == -1 && num >= 0)
-				? ' ' : len.sign);
 	len.numlen = ((flags.prec == 0 && num == 0) ? 0 : int_length(num));
 	len.p_padlen = ((flags.prec != -1 && flags.prec >= len.numlen) ?
 					flags.prec - len.numlen : 0);
@@ -36,28 +33,16 @@ static t_length	get_length(t_flags flags, long num)
 static void		fill_width(t_flags flags, t_length len, int *i, char **str)
 {
 	*i = 0;
-	if ((len.sign == '-' || flags.plus == 1 || flags.space == 1)
-		&& flags.zero == '0' && flags.minus == -1)
-	{
-		(*str)[*i] = len.sign;
-		(*i)++;
-	}
 	if (flags.minus == -1)
 	{
 		ft_memset(((*str) + *i), flags.zero, len.w_padlen);
 		(*i) += len.w_padlen;
 	}
-	if ((len.sign == '-' || flags.plus == 1 || flags.space == 1)
-		&& (flags.zero == ' '))
-	{
-		(*str)[*i] = len.sign;
-		(*i)++;
-	}
 	if (flags.minus == 1)
 		ft_memset(((*str) + len.t_numlen), flags.zero, len.w_padlen);
 }
 
-static char		*create_string(t_flags flags, t_length len, long num)
+static char		*create_string(t_flags flags, t_length len, unsigned int num)
 {
 	char	*str;
 	char	*num_str;
@@ -67,12 +52,12 @@ static char		*create_string(t_flags flags, t_length len, long num)
 	str = malloc((len.total_len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
-	num_str = ft_itoa_base((int)num, 10);
+	num_str = ft_itoa_uns(num);
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');
 	fill_width(flags, len, &i, &str);
 	ft_memset((str + i), '0', len.p_padlen);
 	i += len.p_padlen;
-	j = ((len.sign == '-') ? 1 : 0);
+	j = 0;
 	while (num_str[j] && flags.prec != 0)
 	{
 		str[i] = num_str[j];
@@ -85,13 +70,13 @@ static char		*create_string(t_flags flags, t_length len, long num)
 	return (str);
 }
 
-int				i_print(va_list args, t_flags flags)
+int				u_print(va_list args, t_flags flags)
 {
-	long		num;
+	unsigned int		num;
 	t_length	len;
 	char		*str;
 	
-	num = (long)va_arg(args, int);
+	num = (unsigned int)va_arg(args, int);
 	len = get_length(flags, num);
 	str = create_string(flags, len, num);
 	if (!str)
