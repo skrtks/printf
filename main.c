@@ -6,16 +6,11 @@
 int main(void)
 {
 
-	ft_printf("m %%\n");
-	printf("s %%\n");
-	ft_printf("m %5%\n");
-	printf("s %5%\n");
-	ft_printf("m %.5%\n");
-	printf("s %.5%\n");
+	
 
 
 	// int n = 399;
- //    int y = 0xABCDEF;
+    int y = 0xABCDEF;
 
 
     // /* Upper and lower case. */
@@ -39,7 +34,7 @@ int main(void)
     // printf ("s %08x padded with eight leading zeros.\n", n);
 
 
-    //  Hash mark, #, adds 0x to number. 
+    // /* Hash mark, #, adds 0x to number. */
 
     // ft_printf ("m %#x automatically add 0x.\n", y);
     // printf ("s %#x automatically add 0x.\n", y);
@@ -51,16 +46,19 @@ int main(void)
     // printf ("s %#X, but don't add 0X if zero.\n", 0);
 
 
-    // /* Hash mark plus padding. */
+    /* Hash mark plus padding. */
 
-    // ft_printf ("m %#8x - no padding is added with #.\n", y);
-    // printf ("s %#8x - no padding is added with #.\n", y);
+    ft_printf ("m %#8.4x - no prec? is added with #.\n", y);
+    printf ("s %#8.4x - no prec? is added with #.\n", y);
 
-    // ft_printf ("m %#8X - no padding is added with #.\n", y);
-    // printf ("s %#8X - no padding is added with #.\n", y);
+    ft_printf ("m %#8x - no padding is added with #.\n", y);
+    printf ("s %#8x - no padding is added with #.\n", y);
 
-    // ft_printf ("m %#08X - padding is added with 0, but don't add 0X.\n", 0);
-    // printf ("s %#08X - padding is added with 0, but don't add 0X.\n", 0);
+    ft_printf ("m %#8X - no padding is added with #.\n", y);
+    printf ("s %#8X - no padding is added with #.\n", y);
+
+    ft_printf ("m %#08X - padding is added with 0, but don't add 0X.\n", 0);
+    printf ("s %#08X - padding is added with 0, but don't add 0X.\n", 0);
 
 	return (0);
 }

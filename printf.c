@@ -31,6 +31,8 @@ static int	convert(const char **format, va_list args, t_flags flags)
 		output = x_print(args, flags);
 	if (*(*format) == '%')
 		output = perc_print(flags);
+	if (*(*format) == 'p')
+		output = p_print(args, flags);
 	(*format)++;
 	return(output);
 }

@@ -43,6 +43,7 @@ int	c_print(va_list args, t_flags flags);
 int	s_print(va_list args, t_flags flags);
 int	i_print(va_list args, t_flags flags);
 int	x_print(va_list args, t_flags flags);
+int	p_print(va_list args, t_flags flags);
 int	perc_print(t_flags flags);
 
 int		int_length(long n);
