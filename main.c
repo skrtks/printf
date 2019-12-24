@@ -10,7 +10,7 @@ int main(void)
 
 
 	// int n = 399;
-    int y = 0xABCDEF;
+    // int y = 0xABCDEF;
 
 
     // /* Upper and lower case. */
@@ -48,17 +48,41 @@ int main(void)
 
     /* Hash mark plus padding. */
 
-    ft_printf ("m %#8.4x - no prec? is added with #.\n", y);
-    printf ("s %#8.4x - no prec? is added with #.\n", y);
+    // ft_printf ("m [%#4x] - #4x\n", 52625);
+    // printf ("s [%#4x] - #4x\n", 52625);
 
-    ft_printf ("m %#8x - no padding is added with #.\n", y);
-    printf ("s %#8x - no padding is added with #.\n", y);
+    // ft_printf ("m [%#5x] - #5x\n", 52625);
+    // printf ("s [%#5x] - #5x\n", 52625);
 
-    ft_printf ("m %#8X - no padding is added with #.\n", y);
-    printf ("s %#8X - no padding is added with #.\n", y);
+    // ft_printf ("m [%#6x] - #6x\n", 52625);
+    // printf ("s [%#6x] - #6x\n", 52625);
 
-    ft_printf ("m %#08X - padding is added with 0, but don't add 0X.\n", 0);
-    printf ("s %#08X - padding is added with 0, but don't add 0X.\n", 0);
+    // ft_printf ("m [%#7x] - #7x\n", 52625);
+    // printf ("s [%#7x] - #7x\n", 52625);
+
+    ft_printf ("m [%#-7x] - #-7x\n", 52625);
+    printf ("s [%#-7x] - #-7x\n", 52625);
+
+    // ft_printf ("m %#10x - #10x\n", y);
+    // printf ("s %#10x - #10x\n", y);
+
+    // ft_printf ("m %#010x - #010\n", y);
+    // printf ("s %#010x - #010\n", y);
+
+    // ft_printf ("m %#10.10x - #10.10\n", y);
+    // printf ("s %#10.10x - #10.10\n", y);
+
+    // ft_printf ("m %#.10x - no prec? is added with #.\n", y);
+    // printf ("s %#.10x - no prec? is added with #.\n", y);
+
+    // ft_printf ("m %#8x - no padding is added with #.\n", y);
+    // printf ("s %#8x - no padding is added with #.\n", y);
+
+    // ft_printf ("m %#8X - no padding is added with #.\n", y);
+    // printf ("s %#8X - no padding is added with #.\n", y);
+
+    // ft_printf ("m %#08X - padding is added with 0, but don't add 0X.\n", 0);
+    // printf ("s %#08X - padding is added with 0, but don't add 0X.\n", 0);
 
 	return (0);
 }
