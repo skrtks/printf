@@ -48,6 +48,9 @@ int main(void)
 
     /* Hash mark plus padding. */
 
+    // ft_printf ("m [%#.0x] - #.0x\n", 0);
+    // printf ("s [%#.0x] - #.0x\n", 0);
+
     // ft_printf ("m [%#4x] - #4x\n", 52625);
     // printf ("s [%#4x] - #4x\n", 52625);
 
@@ -62,6 +65,9 @@ int main(void)
 
     ft_printf ("m [%#-7x] - #-7x\n", 52625);
     printf ("s [%#-7x] - #-7x\n", 52625);
+
+    ft_printf ("m [%#.5x] - #.5x\n", 52625);
+    printf ("s [%#.5x] - #.5x\n", 52625);
 
     // ft_printf ("m %#10x - #10x\n", y);
     // printf ("s %#10x - #10x\n", y);
