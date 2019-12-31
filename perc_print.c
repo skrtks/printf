@@ -34,7 +34,8 @@ int	perc_print(t_flags flags)
 		return (output);
 		width[flags.width - 1] = '\0';
 		output += flags.width - 1;
-		ft_memset(width, ' ', flags.width - 1);
+		flags.zero = (flags.zero == 1 && flags.minus == -1 ? '0' : ' ');
+		ft_memset(width, flags.zero, flags.width - 1);
 		ft_putstr_fd(width, 1);
 		free(width);
 	}
