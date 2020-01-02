@@ -48,6 +48,8 @@ char			*ft_itoa_base(long long value, int base)
 	long long	num;
 
 	ptr = malloc((ft_length(value) + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
 	set = "0123456789abcdef";
 	*ptr = '\0';
 	num = value;
