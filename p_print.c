@@ -22,6 +22,7 @@ static t_length	get_length(t_flags flags, unsigned long long num)
 
 	str = ft_itoa_base(num, 16);
 	len.t_numlen = ft_strlen(str);
+	free(str);
 	len.w_padlen = (flags.width - len.t_numlen - 2 < 0 ? 0 :
 					flags.width - len.t_numlen - 2);
 	len.total_len = len.w_padlen + len.t_numlen + 2;
