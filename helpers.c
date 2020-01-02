@@ -47,3 +47,17 @@ char		*set_case(char *str, t_flags flags)
 	}
 	return (str);
 }
+
+int		set_string(char **dst, char *src, int i)
+{
+	int j;
+
+	j = 0;
+	while (src[j])
+	{
+		*(*dst + i) = src[j];
+		i++;
+		j++;
+	}
+	return (i);
+}
