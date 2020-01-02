@@ -30,7 +30,7 @@ int		int_length(long n)
 	return (len);
 }
 
-char		*set_case(char *str, t_flags flags)
+char	*set_case(char *str, t_flags flags)
 {
 	int i;
 
