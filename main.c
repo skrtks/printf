@@ -6,12 +6,11 @@
 int main(void)
 {
 
-	
+	ft_printf("test int %i and %% and string %s\n", -2223, "Hello");
 
 
 	// int n = 399;
-    int y = 0xABCDEF;
-
+    // int y = 0xABCDEF;
 
     // /* Upper and lower case. */
 
@@ -75,8 +74,8 @@ int main(void)
     // ft_printf ("m %#010x - #010\n", y);
     // printf ("s %#010x - #010\n", y);
 
-    ft_printf ("m %#10.10x - #10.10\n", y);
-    printf ("s %#10.10x - #10.10\n", y);
+    // ft_printf ("m %#10.10x - #10.10\n", y);
+    // printf ("s %#10.10x - #10.10\n", y);
 
     // ft_printf ("m %#.10x - no prec? is added with #.\n", y);
     // printf ("s %#.10x - no prec? is added with #.\n", y);
@@ -129,8 +128,8 @@ int main(void)
     // printf ("s %#10.10p - #10.10\s);
 
     //MARK: percentage tests
-    ft_printf ("m %-04%\n");
-    printf ("s %-04%\n");
+    // ft_printf ("m %-04%\n");
+    // printf ("s %-04%\n");
 
 	return (0);
 }

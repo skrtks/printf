@@ -12,6 +12,7 @@
 
 #include "./libft/libft.h"
 #include "printf.h"
+#include <stdarg.h>
 
 int		int_length(long n)
 {

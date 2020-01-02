@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include "printf.h"
 #include "./libft/libft.h"
+#include "printf.h"
+#include <stdarg.h>
 #include <unistd.h>
 
 static int		convert(const char **format, va_list args, t_flags flags)
