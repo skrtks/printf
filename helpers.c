@@ -29,3 +29,21 @@ int		int_length(long n)
 	}
 	return (len);
 }
+
+char		*set_case(char *str, t_flags flags)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && flags.conv == 'X')
+	{
+		str[i] = ft_toupper(str[i]);
+		i++;
+	}
+	while (str[i] && flags.conv == 'x')
+	{
+		str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	return (str);
+}
