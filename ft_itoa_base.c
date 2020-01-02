@@ -32,33 +32,38 @@ static size_t	ft_length(long long n)
 	return (len);
 }
 
+static void		set_sign(long long num, int base, char **ptr)
+{
+	if (num < 0 && base == 10)
+	{
+		(*ptr)--;
+		*(*ptr) = '-';
+	}
+}
+
 char			*ft_itoa_base(long long value, int base)
 {
-	char 		*set;
-    char    	*ptr;
-    long long	num;
+	char		*set;
+	char		*ptr;
+	long long	num;
 
-    ptr = malloc((ft_length(value) + 1) * sizeof(char));
-	set =  "0123456789abcdef";
-    *ptr = '\0';
-    num = value;
-    if (value < 0 && base == 10)
-        value *= -1;
-    if (value == 0)
+	ptr = malloc((ft_length(value) + 1) * sizeof(char));
+	set = "0123456789abcdef";
+	*ptr = '\0';
+	num = value;
+	if (value < 0 && base == 10)
+		value *= -1;
+	if (value == 0)
 	{
 		ptr--;
 		*ptr = set[value % base];
 	}
-    while (value > 0)
-    {
-		ptr--;
-        *ptr = set[value % base];
-        value /= base;
-    }
-    if (num < 0 && base == 10)
+	while (value > 0)
 	{
 		ptr--;
-        *ptr = '-';
+		*ptr = set[value % base];
+		value /= base;
 	}
+	set_sign(num, base, &ptr);
 	return (ptr);
 }
