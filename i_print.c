@@ -80,6 +80,7 @@ static char		*create_string(t_flags flags, t_length len, long num)
 		i++;
 		j++;
 	}
+	free(num_str);
 	if (flags.minus == 1)
 		i += len.w_padlen;
 	str[i] = '\0';
