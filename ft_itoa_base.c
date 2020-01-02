@@ -51,6 +51,7 @@ char			*ft_itoa_base(long long value, int base)
 	if (!ptr)
 		return (NULL);
 	set = "0123456789abcdef";
+	ptr += ft_length(value);
 	*ptr = '\0';
 	num = value;
 	if (value < 0 && base == 10)
