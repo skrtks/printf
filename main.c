@@ -10,7 +10,7 @@ int main(void)
 
 
 	// int n = 399;
-    // int y = 0xABCDEF;
+    int y = 0xABCDEF;
 
 
     // /* Upper and lower case. */
@@ -75,8 +75,8 @@ int main(void)
     // ft_printf ("m %#010x - #010\n", y);
     // printf ("s %#010x - #010\n", y);
 
-    // ft_printf ("m %#10.10x - #10.10\n", y);
-    // printf ("s %#10.10x - #10.10\n", y);
+    ft_printf ("m %#10.10x - #10.10\n", y);
+    printf ("s %#10.10x - #10.10\n", y);
 
     // ft_printf ("m %#.10x - no prec? is added with #.\n", y);
     // printf ("s %#.10x - no prec? is added with #.\n", y);
