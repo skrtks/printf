@@ -17,14 +17,14 @@
 
 static t_length	get_length(t_flags flags, unsigned long long num)
 {
-	t_length len;
-	char *str;
+	t_length	len;
+	char		*str;
 
 	str = ft_itoa_base(num, 16);
 	len.t_numlen = ft_strlen(str);
-	len.w_padlen = (flags.width - len.t_numlen - 2 < 0 ? 0 : flags.width - len.t_numlen - 2);
+	len.w_padlen = (flags.width - len.t_numlen - 2 < 0 ? 0 :
+					flags.width - len.t_numlen - 2);
 	len.total_len = len.w_padlen + len.t_numlen + 2;
-		
 	return (len);
 }
 
@@ -41,12 +41,13 @@ static void		fill_width(t_flags flags, t_length len, int *i, char **str)
 	if (flags.minus == 1)
 	{
 		extra_for_hash = 2;
-		ft_memset(((*str) + extra_for_hash + len.t_numlen), flags.zero, len.w_padlen);
+		ft_memset(((*str) + extra_for_hash + len.t_numlen),
+					flags.zero, len.w_padlen);
 	}
-		
 }
 
-static char		*create_string(t_flags flags, t_length len, unsigned long long num)
+static char		*create_string(t_flags flags, t_length len,
+								unsigned long long num)
 {
 	char	*str;
 	char	*num_str;
@@ -60,19 +61,10 @@ static char		*create_string(t_flags flags, t_length len, unsigned long long num)
 	flags.zero = ' ';
 	fill_width(flags, len, &i, &str);
 	if (flags.zero == ' ')
-	{
-		str[i] = '0';
-		i++;
-		str[i] = 'x';
-		i++;
-	}
+		i = set_string(&str, "0x", i);
 	j = 0;
-	while (num_str[j] && flags.prec != 0)
-	{
-		str[i] = num_str[j];
-		i++;
-		j++;
-	}
+	if (flags.prec != 0)
+		i = set_string(&str, num_str, i);
 	if (flags.minus == 1)
 		i += len.w_padlen;
 	str[i] = '\0';
@@ -82,9 +74,9 @@ static char		*create_string(t_flags flags, t_length len, unsigned long long num)
 int				p_print(va_list args, t_flags flags)
 {
 	unsigned long long	num;
-	t_length		len;
-	char			*str;
-	
+	t_length			len;
+	char				*str;
+
 	num = (unsigned long long)va_arg(args, void*);
 	len = get_length(flags, num);
 	str = create_string(flags, len, num);
