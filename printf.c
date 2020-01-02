@@ -19,7 +19,7 @@ static int	convert(const char **format, va_list args, t_flags flags)
 {
 	int output;
 	
-	if (*(*format) == 'c')
+	if (*(*format) == 'c' || *(*format) == '%')
 		output = c_print(args, flags);
 	if (*(*format) == 's')
 		output = s_print(args, flags);
@@ -29,8 +29,6 @@ static int	convert(const char **format, va_list args, t_flags flags)
 		output = u_print(args, flags);
 	if (*(*format) == 'X' || *(*format) == 'x')
 		output = x_print(args, flags);
-	if (*(*format) == '%')
-		output = perc_print(flags);
 	if (*(*format) == 'p')
 		output = p_print(args, flags);
 	(*format)++;
