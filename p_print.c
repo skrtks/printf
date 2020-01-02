@@ -79,24 +79,6 @@ static char		*create_string(t_flags flags, t_length len, unsigned long long num)
 	return (str);
 }
 
-static char *set_case(char *str, t_flags flags)
-{
-	int i;
-
-	i = 0;
-	while (str[i] && flags.conv == 'X')
-	{
-		str[i] = ft_toupper(str[i]);
-		i++;
-	}
-	while (str[i] && flags.conv == 'x')
-	{
-		str[i] = ft_tolower(str[i]);
-		i++;
-	}
-	return (str);
-}
-
 int				p_print(va_list args, t_flags flags)
 {
 	unsigned long long	num;
@@ -108,7 +90,6 @@ int				p_print(va_list args, t_flags flags)
 	str = create_string(flags, len, num);
 	if (!str)
 		return (0);
-	str = set_case(str, flags);
 	write(1, str, ft_strlen(str));
 	if (str)
 		free(str);
