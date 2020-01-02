@@ -18,6 +18,7 @@
 static t_length	get_length(t_flags flags, unsigned int num)
 {
 	t_length len;
+
 	len.numlen = ((flags.prec == 0 && num == 0) ? 0 : int_length(num));
 	len.p_padlen = ((flags.prec != -1 && flags.prec >= len.numlen) ?
 					flags.prec - len.numlen : 0);
@@ -26,7 +27,7 @@ static t_length	get_length(t_flags flags, unsigned int num)
 					|| flags.space == 1) ? len.p_numlen + 1 : len.p_numlen);
 	len.w_padlen = ((flags.width != -1 && flags.width >= len.t_numlen) ?
 					flags.width - len.t_numlen : 0);
-	len.total_len = len.t_numlen + len.w_padlen;	
+	len.total_len = len.t_numlen + len.w_padlen;
 	return (len);
 }
 
@@ -72,10 +73,10 @@ static char		*create_string(t_flags flags, t_length len, unsigned int num)
 
 int				u_print(va_list args, t_flags flags)
 {
-	unsigned int		num;
-	t_length	len;
-	char		*str;
-	
+	unsigned int	num;
+	t_length		len;
+	char			*str;
+
 	num = (unsigned int)va_arg(args, int);
 	len = get_length(flags, num);
 	str = create_string(flags, len, num);

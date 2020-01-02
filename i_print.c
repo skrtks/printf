@@ -18,6 +18,7 @@
 static t_length	get_length(t_flags flags, long num)
 {
 	t_length len;
+
 	len.sign = (num < 0 ? '-' : '+');
 	len.sign = ((flags.space == 1 && flags.plus == -1 && num >= 0)
 				? ' ' : len.sign);
@@ -29,7 +30,7 @@ static t_length	get_length(t_flags flags, long num)
 					|| flags.space == 1) ? len.p_numlen + 1 : len.p_numlen);
 	len.w_padlen = ((flags.width != -1 && flags.width >= len.t_numlen) ?
 					flags.width - len.t_numlen : 0);
-	len.total_len = len.t_numlen + len.w_padlen;	
+	len.total_len = len.t_numlen + len.w_padlen;
 	return (len);
 }
 
@@ -90,7 +91,7 @@ int				i_print(va_list args, t_flags flags)
 	long		num;
 	t_length	len;
 	char		*str;
-	
+
 	num = (long)va_arg(args, int);
 	len = get_length(flags, num);
 	str = create_string(flags, len, num);
