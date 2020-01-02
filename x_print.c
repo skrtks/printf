@@ -61,13 +61,26 @@ static void		fill_width(t_flags flags, t_length len, int *i, char **str)
 	}
 }
 
+static int		set_string(char **dst, char *src, int i)
+{
+	int j;
+
+	j = 0;
+	while (src[j])
+	{
+		*(*dst + i) = src[j];
+		i++;
+		j++;
+	}
+	return (i);
+}
+
 static char		*create_string(t_flags flags, t_length len,
 								unsigned long long num)
 {
 	char	*str;
 	char	*num_str;
 	int		i;
-	int		j;
 
 	str = malloc((len.total_len + 1) * sizeof(char));
 	if (!str)
@@ -76,20 +89,11 @@ static char		*create_string(t_flags flags, t_length len,
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');
 	fill_width(flags, len, &i, &str);
 	if (flags.zero == ' ' && flags.hash == 1)
-	{
-		str[i] = '0';
-		str[i + 1] = 'x';
-		i += 2;
-	}
+		i = set_string(&str, "0x", i);
 	ft_memset((str + i), '0', len.p_padlen);
 	i += len.p_padlen;
-	j = 0;
-	while (num_str[j] && flags.prec != 0)
-	{
-		str[i] = num_str[j];
-		i++;
-		j++;
-	}
+	if (flags.prec != 0)
+		i = set_string(&str, num_str, i);
 	if (flags.minus == 1)
 		i += len.w_padlen;
 	str[i] = '\0';
