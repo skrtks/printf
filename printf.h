@@ -51,5 +51,7 @@ char			*ft_itoa_uns(int n);
 int				u_print(va_list args, t_flags flags);
 char			*set_case(char *str, t_flags flags);
 int				set_string(char **dst, char *src, int i);
+t_flags			init_flags(void);
+size_t			get_index(const char *str, char c);
 
 #endif

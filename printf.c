@@ -15,10 +15,10 @@
 #include "./libft/libft.h"
 #include <unistd.h>
 
-static int	convert(const char **format, va_list args, t_flags flags)
+static int		convert(const char **format, va_list args, t_flags flags)
 {
 	int output;
-	
+
 	if (*(*format) == 'c' || *(*format) == '%')
 		output = c_print(args, flags);
 	if (*(*format) == 's')
@@ -32,22 +32,14 @@ static int	convert(const char **format, va_list args, t_flags flags)
 	if (*(*format) == 'p')
 		output = p_print(args, flags);
 	(*format)++;
-	return(output);
+	return (output);
 }
 
 static t_flags	parse_flags(const char **format)
 {
 	t_flags flags;
 
-	flags.minus = -1;
-	flags.zero = -1;
-	flags.hash = -1;
-	flags.apo = -1;
-	flags.space = -1;
-	flags.plus = -1;
-	flags.width = -1;
-	flags.prec = -1;
-	flags.conv = 'q';
+	flags = init_flags();
 	while (ft_strrchr("-0#\' +", *(*format)))
 	{
 		if (*(*format) == '-')
@@ -67,7 +59,7 @@ static t_flags	parse_flags(const char **format)
 	return (flags);
 }
 
-static void parse_other(const char **format, va_list args, t_flags *flags)
+static void		parse_other(const char **format, va_list args, t_flags *flags)
 {
 	if (*(*format) == '*')
 		flags->width = va_arg(args, int);
@@ -89,21 +81,11 @@ static void parse_other(const char **format, va_list args, t_flags *flags)
 		(*format)++;
 }
 
-static size_t	get_index(const char *str, char c)
+static int		write_string(const char **format)
 {
-	size_t l;
-
-	l = 0;
-	while (str[l] != '\0' && str[l] != c)
-		l++;
-	return (l);
-}
-
-static int write_string(const char **format)
-{
-	int p_ind;
-	int s_ind;
-	char *str;
+	int		p_ind;
+	int		s_ind;
+	char	*str;
 
 	p_ind = get_index(*format, '%');
 	str = malloc((p_ind + 1) * sizeof(char));
@@ -122,11 +104,11 @@ static int write_string(const char **format)
 	return (s_ind);
 }
 
-int	ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
-	va_list args;
-	t_flags flags;
-	int output;
+	va_list	args;
+	t_flags	flags;
+	int		output;
 
 	output = 0;
 	va_start(args, format);
@@ -134,7 +116,6 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			// TODO: think about error handling
 			output += write_string(&format);
 		}
 		if (*format == '%')
