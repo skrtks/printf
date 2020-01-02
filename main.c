@@ -5,8 +5,12 @@
 
 int main(void)
 {
+    // char *test = "test";
+	// ft_printf("test int %p \n", test);
+    // printf("test int %p \n", test);
 
-	ft_printf("test int %i and %% and string %s\n", -2223, "Hello");
+    ft_printf("test int %i \n", 123);
+    printf("test int %i \n", 123);
 
 
 	// int n = 399;
