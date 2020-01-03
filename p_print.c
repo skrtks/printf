@@ -69,6 +69,7 @@ static char		*create_string(t_flags flags, t_length len,
 	if (flags.minus == 1)
 		i += len.w_padlen;
 	str[i] = '\0';
+	free(num_str);
 	return (str);
 }
 
