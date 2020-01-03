@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
 #include <stdlib.h>
 
 static size_t	ft_length(unsigned int n)
