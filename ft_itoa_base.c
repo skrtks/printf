@@ -54,8 +54,7 @@ char			*ft_itoa_base(long long value, int base)
 	ptr += ft_length(value, base);
 	*ptr = '\0';
 	num = value;
-	if (value < 0 && base == 10)
-		value *= -1;
+	value *= ((value < 0 && base == 10) ? -1 : 1);
 	if (value == 0)
 	{
 		ptr--;
