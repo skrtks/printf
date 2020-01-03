@@ -56,9 +56,9 @@ static char		*create_string(t_flags flags, t_length len,
 	int		j;
 
 	str = malloc((len.total_len + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
 	num_str = ft_itoa_base(num, 16);
+	if (!str || !num_str)
+		return (NULL);
 	flags.zero = ' ';
 	fill_width(flags, len, &i, &str);
 	if (flags.zero == ' ')

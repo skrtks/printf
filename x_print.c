@@ -72,6 +72,8 @@ static char		*create_string(t_flags flags, t_length len,
 	if (!str)
 		return (NULL);
 	num_str = ft_itoa_base(num, 16);
+	if (!num_str)
+		return (NULL);
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');
 	fill_width(flags, len, &i, &str);
 	if (flags.zero == ' ' && flags.hash == 1)

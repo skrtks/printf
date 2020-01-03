@@ -66,9 +66,9 @@ static char		*create_string(t_flags flags, t_length len, long num)
 	int		j;
 
 	str = malloc((len.total_len + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
 	num_str = ft_itoa_base((int)num, 10);
+	if (!str || !num_str)
+		return (NULL);
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');
 	fill_width(flags, len, &i, &str);
 	ft_memset((str + i), '0', len.p_padlen);
