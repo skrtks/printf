@@ -91,7 +91,7 @@ int				i_print(va_list args, t_flags flags)
 {
 	long		num;
 	t_length	len;
-	int			strlen;
+	int			slen;
 	char		*str;
 
 	num = (long)va_arg(args, int);
@@ -99,9 +99,9 @@ int				i_print(va_list args, t_flags flags)
 	str = create_string(flags, len, num);
 	if (!str)
 		return (0);
-	strlen = ft_strlen(str);
-	write(1, str, ft_strlen(str));
+	slen = ft_strlen(str);
+	write(1, str, slen);
 	if (str)
 		free(str);
-	return (ft_strlen(str));
+	return (slen);
 }
