@@ -9,8 +9,8 @@ int main(void)
 	// ft_printf("test int %p \n", test);
     // printf("test int %p \n", test);
 
-    ft_printf("test int %i \n", 123);
-    printf("test int %i \n", 123);
+    // ft_printf("test int %i \n", 123);
+    // printf("test int %i \n", 123);
 
 
 	// int n = 399;
@@ -94,42 +94,39 @@ int main(void)
     // printf ("s %#08X - padding is added with 0, but don't add 0X.\n", 0);
 
     // MARK: pointer tests
-    // char *s;
+    char *s;
 
-    // s = "test";
+    s = "test";
 
-    // ft_printf("m: %p\n", NULL);
-    // printf("s: %p\n", NULL);
+    ft_printf("m: %p\n", NULL);
+    printf("s: %p\n", NULL);
 
-    // ft_printf ("m [%4p] - 4p\n", s);
-    // printf ("s [%4p] - 4p\n", s);
+    ft_printf ("m [%4p] - 4p\n", s);
+    printf ("s [%4p] - 4p\n", s);
 
-    // ft_printf ("m [%5p] - 5p\n", s);
-    // printf ("s [%5p] - 5p\n", s);
+    ft_printf ("m [%5p] - 5p\n", s);
+    printf ("s [%5p] - 5p\n", s);
 
-    // ft_printf ("m [%6p] - 6p\n", s);
-    // printf ("s [%6p] - 6p\n", s);
+    ft_printf ("m [%6p] - 6p\n", s);
+    printf ("s [%6p] - 6p\n", s);
 
-    // ft_printf ("m [%7p] - 7p\n", s);
-    // printf ("s [%7p] - 7p\n", s);
+    ft_printf ("m [%7p] - 7p\n", s);
+    printf ("s [%7p] - 7p\n", s);
 
-    // ft_printf ("m [%-7p] - -7p\n", s);
-    // printf ("s [%-7p] - -7p\n", s);
+    ft_printf ("m [%-7p] - -7p\n", s);
+    printf ("s [%-7p] - -7p\n", s);
 
-    // ft_printf ("m [%30p] - 30p\n", s);
-    // printf ("s [%30p] - 30p\n", s);
+    ft_printf ("m [%30p] - 30p\n", s);
+    printf ("s [%30p] - 30p\n", s);
 
-    // ft_printf ("m [%-30p] - -30p\n", s);
-    // printf ("s [%-30p] - -30p\n", s);
+    ft_printf ("m [%-30p] - -30p\n", s);
+    printf ("s [%-30p] - -30p\n", s);
 
-    // ft_printf ("m %#10p - #10p\s);
-    // printf ("s %#10p - #10p\s);
-
-    // ft_printf ("m %#010p - #010\s);
-    // printf ("s %#010p - #010\s);
-
-    // ft_printf ("m %#10.10p - #10.10\s);
-    // printf ("s %#10.10p - #10.10\s);
+    while (1)
+    {
+        ;
+    }
+    
 
     //MARK: percentage tests
     // ft_printf ("m %-04%\n");
