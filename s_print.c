@@ -15,15 +15,15 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-static int print_width_prec(t_flags flags, char *str, int len)
+static int	print_width_prec(t_flags flags, char *str, int len)
 {
 	char *width;
+
 	if (flags.minus == 1)
 		write(1, str, len);
 	if (flags.width != -1 && (flags.width - len + 1) > 0)
 	{
 		width = malloc((flags.width - len + 1) * sizeof(char));
-		// TODO: think about error checking
 		if (!width)
 			return (0);
 		width[flags.width - len] = '\0';
@@ -33,20 +33,21 @@ static int print_width_prec(t_flags flags, char *str, int len)
 	}
 	if (flags.minus == -1)
 		write(1, str, len);
-	return ((flags.width != -1 && (flags.width - len + 1) > 0) ? flags.width : len);
+	return ((flags.width != -1 && (flags.width - len + 1) > 0) ?
+			flags.width : len);
 }
 
-int	s_print(va_list args, t_flags flags)
+int			s_print(va_list args, t_flags flags)
 {
-	char *str;
-	int len;
+	char	*str;
+	int		len;
 
 	str = va_arg(args, char*);
 	if (str == NULL)
 		str = "(null)";
 	len = ft_strlen(str);
 	if (flags.prec != -1)
-				len = (flags.prec > len ? len : flags.prec);
+		len = (flags.prec > len ? len : flags.prec);
 	if (flags.width == -1 && flags.prec == -1)
 	{
 		ft_putstr_fd(str, 1);

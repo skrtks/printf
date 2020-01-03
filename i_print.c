@@ -18,6 +18,7 @@
 static t_length	get_length(t_flags flags, long num)
 {
 	t_length len;
+
 	len.sign = (num < 0 ? '-' : '+');
 	len.sign = ((flags.space == 1 && flags.plus == -1 && num >= 0)
 				? ' ' : len.sign);
@@ -29,7 +30,7 @@ static t_length	get_length(t_flags flags, long num)
 					|| flags.space == 1) ? len.p_numlen + 1 : len.p_numlen);
 	len.w_padlen = ((flags.width != -1 && flags.width >= len.t_numlen) ?
 					flags.width - len.t_numlen : 0);
-	len.total_len = len.t_numlen + len.w_padlen;	
+	len.total_len = len.t_numlen + len.w_padlen;
 	return (len);
 }
 
@@ -65,9 +66,9 @@ static char		*create_string(t_flags flags, t_length len, long num)
 	int		j;
 
 	str = malloc((len.total_len + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
 	num_str = ft_itoa_base((int)num, 10);
+	if (!str || !num_str)
+		return (NULL);
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');
 	fill_width(flags, len, &i, &str);
 	ft_memset((str + i), '0', len.p_padlen);
@@ -79,6 +80,7 @@ static char		*create_string(t_flags flags, t_length len, long num)
 		i++;
 		j++;
 	}
+	free(num_str);
 	if (flags.minus == 1)
 		i += len.w_padlen;
 	str[i] = '\0';
@@ -89,15 +91,17 @@ int				i_print(va_list args, t_flags flags)
 {
 	long		num;
 	t_length	len;
+	int			slen;
 	char		*str;
-	
+
 	num = (long)va_arg(args, int);
 	len = get_length(flags, num);
 	str = create_string(flags, len, num);
 	if (!str)
 		return (0);
-	write(1, str, ft_strlen(str));
+	slen = ft_strlen(str);
+	write(1, str, slen);
 	if (str)
 		free(str);
-	return (ft_strlen(str));
+	return (slen);
 }

@@ -17,39 +17,41 @@
 
 typedef struct	s_flags
 {
-	int minus;
-	int zero;
-	int hash;
-	int apo;
-	int space;
-	int plus;
-	int width;
-	int prec;
-	char conv;
-} 				t_flags;
+	int			minus;
+	int			zero;
+	int			hash;
+	int			apo;
+	int			space;
+	int			plus;
+	int			width;
+	int			prec;
+	char		conv;
+}				t_flags;
 
-typedef struct s_length {
-	int numlen;
-	int p_numlen;
-	int t_numlen;
-	int p_padlen;
-	int w_padlen;
-	int total_len;
-	char sign;
-}		t_length;
+typedef struct	s_length {
+	int			numlen;
+	int			p_numlen;
+	int			t_numlen;
+	int			p_padlen;
+	int			w_padlen;
+	int			total_len;
+	char		sign;
+}				t_length;
 
-int ft_printf(const char *format, ...);
-int	c_print(va_list args, t_flags flags);
-int	s_print(va_list args, t_flags flags);
-int	i_print(va_list args, t_flags flags);
-int	x_print(va_list args, t_flags flags);
-int	p_print(va_list args, t_flags flags);
-int	perc_print(t_flags flags);
+int				ft_printf(const char *format, ...);
+int				c_print(va_list args, t_flags flags);
+int				s_print(va_list args, t_flags flags);
+int				i_print(va_list args, t_flags flags);
+int				x_print(va_list args, t_flags flags);
+int				p_print(va_list args, t_flags flags);
 
-int		int_length(long n);
-char	*ft_itoa_base(long long value, int base);
-char	*ft_itoa_uns(int n);
-int		u_print(va_list args, t_flags flags);
+int				int_length(long n);
+char			*ft_itoa_base(long long value, int base);
+char			*ft_itoa_uns(int n);
+int				u_print(va_list args, t_flags flags);
+char			*set_case(char *str, t_flags flags);
+int				set_string(char **dst, char *src, int i);
+t_flags			init_flags(void);
+size_t			get_index(const char *str, char c);
 
-
-# endif
+#endif

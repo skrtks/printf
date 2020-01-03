@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
 #include <stdlib.h>
 
 static size_t	ft_length(unsigned int n)
@@ -34,7 +33,7 @@ static size_t	ft_length(unsigned int n)
 
 static void		ft_convert(char *str, unsigned int input, size_t len)
 {
-	size_t	i;
+	size_t			i;
 	unsigned int	rem;
 
 	i = len - 1;
@@ -61,9 +60,9 @@ static void		ft_convert(char *str, unsigned int input, size_t len)
 
 char			*ft_itoa_uns(int n)
 {
-	char	*str;
+	char			*str;
 	unsigned int	input;
-	size_t	len;
+	size_t			len;
 
 	input = (unsigned int)n;
 	len = ft_length(input);
