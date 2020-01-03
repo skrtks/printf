@@ -33,6 +33,7 @@ static t_length	get_length(t_flags flags, unsigned int num)
 		len.w_padlen = (len.w_padlen - 2 < 0 ? 0 : len.w_padlen - 2);
 		len.total_len = len.t_numlen + len.w_padlen + 2;
 	}
+	free(str);
 	return (len);
 }
 
