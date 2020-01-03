@@ -76,6 +76,7 @@ int				u_print(va_list args, t_flags flags)
 {
 	unsigned int	num;
 	t_length		len;
+	int				slen;
 	char			*str;
 
 	num = (unsigned int)va_arg(args, int);
@@ -83,8 +84,9 @@ int				u_print(va_list args, t_flags flags)
 	str = create_string(flags, len, num);
 	if (!str)
 		return (0);
-	write(1, str, ft_strlen(str));
+	slen = ft_strlen(str);
+	write(1, str, slen);
 	if (str)
 		free(str);
-	return (ft_strlen(str));
+	return (slen);
 }
