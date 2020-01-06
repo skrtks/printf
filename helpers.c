@@ -14,8 +14,6 @@
 #include "printf.h"
 #include <stdarg.h>
 
-#include <locale.h> //
-
 int		int_length(long n)
 {
 	long	len;
@@ -104,33 +102,4 @@ void	ft_putnbr_fd(int n, int fd)
 	if (num >= 10)
 		ft_putnbr_fd(num / 10, fd);
 	ft_putchar_fd(num % 10 + '0', fd);
-}
-
-int sep_calculator(int num)
-{
-	unsigned int	len;
-
-	len = 0;
-	while (num >= 1000)
-	{
-		num = num / 1000;
-		len++;
-	}
-	return (len);
-}
-
-char *set_separators(long num, t_length len, char *str, int start)
-{
-	int i;
-	struct lconv * lc;
-
-	lc = localeconv();
-	i = start + len.numlen;
-	while (num >= 1000)
-	{
-		i -= 4;
-		str[i] = *lc->thousands_sep;
-		num /= 1000;
-	}
-	return (str);
 }
