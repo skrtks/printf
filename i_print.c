@@ -23,6 +23,7 @@ static t_length	get_length(t_flags flags, long num)
 	len.sign = ((flags.space == 1 && flags.plus == -1 && num >= 0)
 				? ' ' : len.sign);
 	len.numlen = ((flags.prec == 0 && num == 0) ? 0 : int_length(num));
+	len.numlen += (flags.apo == 1 ? sep_calculator(num) : 0);
 	len.p_padlen = ((flags.prec != -1 && flags.prec >= len.numlen) ?
 					flags.prec - len.numlen : 0);
 	len.p_numlen = len.numlen + len.p_padlen;
@@ -65,7 +66,7 @@ static char		*create_string(t_flags flags, t_length len, long num)
 	int		i;
 	int		j;
 
-	str = malloc((len.total_len + 1) * sizeof(char));
+	str = ft_calloc((len.total_len + 1), sizeof(char));
 	num_str = ft_itoa_base((int)num, 10);
 	if (!str || !num_str)
 		return (NULL);
@@ -74,11 +75,15 @@ static char		*create_string(t_flags flags, t_length len, long num)
 	ft_memset((str + i), '0', len.p_padlen);
 	i += len.p_padlen;
 	j = ((len.sign == '-') ? 1 : 0);
+	str = set_separators(num, len, str, i);
 	while (num_str[j] && flags.prec != 0)
 	{
-		str[i] = num_str[j];
+		if (str[i] == '\0')
+		{
+			str[i] = num_str[j];
+			j++;
+		}
 		i++;
-		j++;
 	}
 	free(num_str);
 	if (flags.minus == 1)
