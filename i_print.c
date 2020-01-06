@@ -75,7 +75,8 @@ static char		*create_string(t_flags flags, t_length len, long num)
 	ft_memset((str + i), '0', len.p_padlen);
 	i += len.p_padlen;
 	j = ((len.sign == '-') ? 1 : 0);
-	str = set_separators(num, len, str, i);
+	if (flags.apo == 1)
+		str = set_separators(num, len, str, i);
 	while (num_str[j] && flags.prec != 0)
 	{
 		if (str[i] == '\0')
@@ -100,6 +101,7 @@ int				i_print(va_list args, t_flags flags)
 	char		*str;
 
 	num = (long)va_arg(args, int);
+	flags.apo = (flags.apo == 1 ? 1 : 0);
 	len = get_length(flags, num);
 	str = create_string(flags, len, num);
 	if (!str)
