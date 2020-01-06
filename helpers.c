@@ -14,6 +14,8 @@
 #include "printf.h"
 #include <stdarg.h>
 
+#include <locale.h> //
+
 int		int_length(long n)
 {
 	long	len;
@@ -87,4 +89,48 @@ size_t	get_index(const char *str, char c)
 	while (str[l] != '\0' && str[l] != c)
 		l++;
 	return (l);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	long num;
+
+	num = (long)n;
+	if (num < 0)
+	{
+		ft_putchar_fd('-', fd);
+		num = num * -1;
+	}
+	if (num >= 10)
+		ft_putnbr_fd(num / 10, fd);
+	ft_putchar_fd(num % 10 + '0', fd);
+}
+
+int sep_calculator(int num)
+{
+	unsigned int	len;
+
+	len = 0;
+	while (num >= 1000)
+	{
+		num = num / 1000;
+		len++;
+	}
+	return (len);
+}
+
+char *set_separators(long num, t_length len, char *str, int start)
+{
+	int i;
+	struct lconv * lc;
+
+	lc = localeconv();
+	i = start + len.numlen;
+	while (num >= 1000)
+	{
+		i -= 4;
+		str[i] = *lc->thousands_sep;
+		num /= 1000;
+	}
+	return (str);
 }
