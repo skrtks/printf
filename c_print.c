@@ -25,7 +25,7 @@ int	c_print(va_list args, t_flags flags)
 	c = (flags.conv == 'c' ? va_arg(args, int) : '%');
 	if (flags.minus == 1)
 		write(1, &c, 1);
-	if (flags.width != -1)
+	if (flags.width > 0)
 	{
 		width = malloc((flags.width) * sizeof(char));
 		if (!width)
