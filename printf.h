@@ -49,11 +49,11 @@ int				s_print(va_list args, t_flags flags);
 int				i_print(va_list args, t_flags flags);
 int				x_print(va_list args, t_flags flags);
 int				p_print(va_list args, t_flags flags);
+int				u_print(va_list args, t_flags flags);
 
 int				int_length(long n);
 char			*ft_itoa_base(long long value, int base);
 char			*ft_itoa_uns(int n);
-int				u_print(va_list args, t_flags flags);
 char			*set_case(char *str, t_flags flags);
 int				set_string(char **dst, char *src, int i);
 t_flags			init_flags(void);
