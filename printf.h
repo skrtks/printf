@@ -39,8 +39,8 @@ typedef struct	s_length {
 }				t_length;
 
 typedef struct	s_index {
-	int 		i;
-	int 		j;
+	int			i;
+	int			j;
 }				t_index;
 
 int				ft_printf(const char *format, ...);
@@ -59,9 +59,10 @@ int				set_string(char **dst, char *src, int i);
 t_flags			init_flags(void);
 size_t			get_index(const char *str, char c);
 int				sep_calculator(long num);
-char			*set_separators(long num, t_length len, char *str, int start);
-char			*set_num(t_flags flags, char *str, char *num_str, t_index *index);
+char			*set_separators(long num, t_length len, char *str,
+								int start);
+char			*set_num(t_flags flags, char *str, char *num_str,
+						t_index *index);
 char			*create_dec_string(t_flags flags, t_length len, long num);
-// void			fill_width(t_flags flags, t_length len, t_index *index, char **str);
 
 #endif
