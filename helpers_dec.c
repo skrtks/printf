@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   helpers_2.c                                        :+:    :+:            */
+/*   helpers_dec.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: skorteka <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -32,8 +32,8 @@ int				sep_calculator(long num)
 
 char			*set_separators(long num, t_length len, char *str, int start)
 {
-	int i;
-	struct lconv * lc;
+	int				i;
+	struct lconv	*lc;
 
 	lc = localeconv();
 	i = start + len.numlen;
@@ -48,7 +48,8 @@ char			*set_separators(long num, t_length len, char *str, int start)
 	return (str);
 }
 
-char			*set_num(t_flags flags, char *str, char *num_str, t_index *index)
+char			*set_num(t_flags flags, char *str, char *num_str,
+						t_index *index)
 {
 	while (num_str[index->j] && flags.prec != 0)
 	{
@@ -62,7 +63,8 @@ char			*set_num(t_flags flags, char *str, char *num_str, t_index *index)
 	return (str);
 }
 
-static void		fill_width(t_flags flags, t_length len, t_index *index, char **str)
+static void		fill_width(t_flags flags, t_length len, t_index *index,
+							char **str)
 {
 	index->i = 0;
 	if ((len.sign == '-' || flags.plus == 1 || flags.space == 1)
@@ -93,14 +95,18 @@ char			*create_dec_string(t_flags flags, t_length len, long num)
 	t_index	index;
 
 	str = ft_calloc((len.total_len + 1), sizeof(char));
-	num_str = (flags.conv == 'u' ? ft_itoa_uns(num) : ft_itoa_base((int)num, 10));
+	num_str = (flags.conv == 'u' ? ft_itoa_uns(num) :
+				ft_itoa_base((int)num, 10));
 	if (!str || !num_str)
 		return (NULL);
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');
 	fill_width(flags, len, &index, &str);
 	ft_memset((str + index.i), '0', len.p_padlen);
 	index.i += len.p_padlen;
-	index.j = (flags.conv == 'u' ? 0 : ((len.sign == '-') ? 1 : 0));
+	if (flags.conv == 'u')
+		index.j = 0;
+	else
+		index.j = ((len.sign == '-') ? 1 : 0);
 	if (flags.apo == 1)
 		str = set_separators(num, len, str, index.i);
 	set_num(flags, str, num_str, &index);

@@ -63,22 +63,6 @@ int		set_string(char **dst, char *src, int i)
 	return (i);
 }
 
-t_flags	init_flags(void)
-{
-	t_flags flags;
-
-	flags.minus = -1;
-	flags.zero = -1;
-	flags.hash = -1;
-	flags.apo = -1;
-	flags.space = -1;
-	flags.plus = -1;
-	flags.width = -1;
-	flags.prec = -1;
-	flags.conv = 'q';
-	return (flags);
-}
-
 size_t	get_index(const char *str, char c)
 {
 	size_t l;
@@ -87,19 +71,4 @@ size_t	get_index(const char *str, char c)
 	while (str[l] != '\0' && str[l] != c)
 		l++;
 	return (l);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	long num;
-
-	num = (long)n;
-	if (num < 0)
-	{
-		ft_putchar_fd('-', fd);
-		num = num * -1;
-	}
-	if (num >= 10)
-		ft_putnbr_fd(num / 10, fd);
-	ft_putchar_fd(num % 10 + '0', fd);
 }
