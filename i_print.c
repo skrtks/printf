@@ -35,25 +35,25 @@ static t_length	get_length(t_flags flags, long num)
 	return (len);
 }
 
-static void		fill_width(t_flags flags, t_length len, int *i, char **str)
+static void		fill_width(t_flags flags, t_length len, t_index *index, char **str)
 {
-	*i = 0;
+	index->i = 0;
 	if ((len.sign == '-' || flags.plus == 1 || flags.space == 1)
 		&& flags.zero == '0' && flags.minus == -1)
 	{
-		(*str)[*i] = len.sign;
-		(*i)++;
+		(*str)[index->i] = len.sign;
+		(index->i)++;
 	}
 	if (flags.minus == -1)
 	{
-		ft_memset(((*str) + *i), flags.zero, len.w_padlen);
-		(*i) += len.w_padlen;
+		ft_memset(((*str) + index->i), flags.zero, len.w_padlen);
+		(index->i) += len.w_padlen;
 	}
 	if ((len.sign == '-' || flags.plus == 1 || flags.space == 1)
 		&& (flags.zero == ' '))
 	{
-		(*str)[*i] = len.sign;
-		(*i)++;
+		(*str)[index->i] = len.sign;
+		(index->i)++;
 	}
 	if (flags.minus == 1)
 		ft_memset(((*str) + len.t_numlen), flags.zero, len.w_padlen);
@@ -63,33 +63,33 @@ static char		*create_string(t_flags flags, t_length len, long num)
 {
 	char	*str;
 	char	*num_str;
-	int		i;
-	int		j;
+	t_index	index;
 
 	str = ft_calloc((len.total_len + 1), sizeof(char));
 	num_str = ft_itoa_base((int)num, 10);
 	if (!str || !num_str)
 		return (NULL);
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');
-	fill_width(flags, len, &i, &str);
-	ft_memset((str + i), '0', len.p_padlen);
-	i += len.p_padlen;
-	j = ((len.sign == '-') ? 1 : 0);
+	fill_width(flags, len, &index, &str);
+	ft_memset((str + index.i), '0', len.p_padlen);
+	index.i += len.p_padlen;
+	index.j = ((len.sign == '-') ? 1 : 0);
 	if (flags.apo == 1)
-		str = set_separators(num, len, str, i);
-	while (num_str[j] && flags.prec != 0)
+		str = set_separators(num, len, str, index.i);
+	// set_num(flags, str, num_str, &i);
+	while (num_str[index.j] && flags.prec != 0)
 	{
-		if (str[i] == '\0')
+		if (str[index.i] == '\0')
 		{
-			str[i] = num_str[j];
-			j++;
+			str[index.i] = num_str[index.j];
+			index.j++;
 		}
-		i++;
+		index.i++;
 	}
 	free(num_str);
 	if (flags.minus == 1)
-		i += len.w_padlen;
-	str[i] = '\0';
+		index.i += len.w_padlen;
+	str[index.i] = '\0';
 	return (str);
 }
 
