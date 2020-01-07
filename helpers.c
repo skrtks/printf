@@ -63,22 +63,6 @@ int		set_string(char **dst, char *src, int i)
 	return (i);
 }
 
-t_flags	init_flags(void)
-{
-	t_flags flags;
-
-	flags.minus = -1;
-	flags.zero = -1;
-	flags.hash = -1;
-	flags.apo = -1;
-	flags.space = -1;
-	flags.plus = -1;
-	flags.width = -1;
-	flags.prec = -1;
-	flags.conv = 'q';
-	return (flags);
-}
-
 size_t	get_index(const char *str, char c)
 {
 	size_t l;
