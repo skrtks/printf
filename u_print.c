@@ -19,6 +19,7 @@ static t_length	get_length(t_flags flags, long long num)
 {
 	t_length len;
 
+	len.sign = (num < 0 ? '-' : '+');
 	len.numlen = ((flags.prec == 0 && num == 0) ? 0 : int_length(num));
 	len.numlen += (flags.apo == 1 ? sep_calculator(num) : 0);
 	len.p_padlen = ((flags.prec != -1 && flags.prec >= len.numlen) ?
