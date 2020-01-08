@@ -102,7 +102,7 @@ int				x_print(va_list args, t_flags flags)
 	len = get_length(flags, num);
 	str = create_string(flags, len, num);
 	if (!str)
-		return (0);
+		return (-1);
 	str = set_case(str, flags);
 	slen = ft_strlen(str);
 	write(1, str, slen);

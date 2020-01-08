@@ -83,24 +83,15 @@ static void		parse_other(const char **format, va_list args, t_flags *flags)
 
 static int		write_string(const char **format)
 {
-	int		p_ind;
 	int		s_ind;
-	char	*str;
 
-	p_ind = get_index(*format, '%');
-	str = malloc((p_ind + 1) * sizeof(char));
-	if (!str)
-		return (0);
-	str[p_ind] = '\0';
 	s_ind = 0;
 	while (*(*format) != '%' && *(*format))
 	{
-		str[s_ind] = *(*format);
+		write(1, *format, 1);
 		s_ind++;
 		(*format)++;
 	}
-	ft_putstr_fd(str, 1);
-	free(str);
 	return (s_ind);
 }
 
@@ -109,23 +100,24 @@ int				ft_printf(const char *format, ...)
 	va_list	args;
 	t_flags	flags;
 	int		output;
+	int		convert_out;
 
 	output = 0;
 	va_start(args, format);
 	while (*format)
 	{
 		if (*format != '%')
-		{
 			output += write_string(&format);
-		}
 		if (*format == '%')
 		{
 			format++;
 			flags = parse_flags(&format);
 			parse_other(&format, args, &flags);
 			flags = parse_l_mod(&format, flags);
-			flags.conv = *format;
-			output += convert(&format, args, flags);
+			convert_out = convert(&format, args, flags);
+			if (convert_out == -1)
+				return (-1);
+			output += convert_out;
 		}
 	}
 	va_end(args);

@@ -12,7 +12,6 @@
 
 #ifndef PRINTF_H
 # define PRINTF_H
-# include <stdlib.h>
 # include <stdarg.h>
 
 typedef struct	s_flags
