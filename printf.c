@@ -61,8 +61,19 @@ static t_flags	parse_flags(const char **format)
 
 static void		parse_other(const char **format, va_list args, t_flags *flags)
 {
+	int temp;
+
 	if (*(*format) == '*')
-		flags->width = va_arg(args, int);
+	{
+		temp = va_arg(args, int);
+		if (temp < 0)
+		{
+			flags->minus = 1;
+			flags->width = temp * -1;
+		}
+		else
+			flags->width = temp;
+	}
 	else if (!ft_strrchr("cspdiuxX%.", *(*format)))
 		flags->width = ft_atoi(*format);
 	while (!ft_strrchr("cspdiuxXlh%.", *(*format)))
@@ -71,7 +82,10 @@ static void		parse_other(const char **format, va_list args, t_flags *flags)
 	{
 		(*format)++;
 		if (*(*format) == '*')
-			flags->prec = va_arg(args, int);
+		{
+			temp = va_arg(args, int);
+			flags->prec = (temp < 0 ? -1 : temp);
+		}
 		else if (ft_strrchr("cspdiuxX%", *(*format)))
 			flags->prec = 0;
 		else if (!ft_strrchr("cspdiuxX%", *(*format)))
@@ -79,6 +93,8 @@ static void		parse_other(const char **format, va_list args, t_flags *flags)
 	}
 	while (!ft_strrchr("cspdiuxXlh%", *(*format)))
 		(*format)++;
+	if (flags->zero == 1 && flags->minus == 1)
+		flags->zero = -1;
 }
 
 static int		write_string(const char **format)

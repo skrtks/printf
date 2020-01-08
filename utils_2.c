@@ -44,3 +44,21 @@ t_flags	parse_l_mod(const char **format, t_flags flags)
 	flags.conv = *(*format);
 	return (flags);
 }
+
+// t_flags get_star(t_flags flags, va_list args, char *format)
+// {
+// 	int temp;
+
+// 	if (*(*format) == '*')
+// 	{
+// 		temp = va_arg(args, int);
+// 		if (temp < 0)
+// 		{
+// 			flags->minus = 1;
+// 			flags->width = temp * -1;
+// 		}
+// 		else
+// 			flags->width = temp;
+// 	}
+// 	return (format);
+// }

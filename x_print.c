@@ -81,7 +81,7 @@ static char		*create_string(t_flags flags, t_length len,
 		i = set_string(&str, "0x", i);
 	ft_memset((str + i), '0', len.p_padlen);
 	i += len.p_padlen;
-	if (flags.prec != 0)
+	if (!(flags.prec == 0 && num == 0))
 		i = set_string(&str, num_str, i);
 	if (flags.minus == 1)
 		i += len.w_padlen;

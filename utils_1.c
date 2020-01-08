@@ -49,10 +49,10 @@ char			*set_separators(long long num, t_length len,
 	return (str);
 }
 
-char			*set_num(t_flags flags, char *str, char *num_str,
+char			*set_num(char *str, char *num_str,
 						t_index *index)
 {
-	while (num_str[index->j] && flags.prec != 0)
+	while (num_str[index->j])
 	{
 		if (str[index->i] == '\0')
 		{
@@ -109,7 +109,8 @@ char			*create_dec_string(t_flags flags, t_length len, long long num)
 		index.j = ((len.sign == '-') ? 1 : 0);
 	if (flags.apo == 1)
 		str = set_separators(num, len, str, index.i);
-	set_num(flags, str, num_str, &index);
+	if (!(flags.prec == 0 && num == 0))
+		set_num(str, num_str, &index);
 	free(num_str);
 	if (flags.minus == 1)
 		index.i += len.w_padlen;

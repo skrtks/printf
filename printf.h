@@ -60,10 +60,12 @@ size_t			get_index(const char *str, char c);
 int				sep_calculator(long long num);
 char			*set_separators(long long num, t_length len, char *str,
 								int start);
-char			*set_num(t_flags flags, char *str, char *num_str,
+char			*set_num(char *str, char *num_str,
 						t_index *index);
 char			*create_dec_string(t_flags flags, t_length len, long long num);
 t_flags			parse_l_mod(const char **format, t_flags flags);
 long long		get_dec(t_flags flags, va_list args);
+
+// t_flags *get_star(t_flags *flags, va_list args, char *format);
 
 #endif
