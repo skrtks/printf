@@ -14,9 +14,9 @@
 #include "printf.h"
 #include <stdarg.h>
 
-int			int_length(long n)
+int			int_length(long long n)
 {
-	long	len;
+	long long	len;
 
 	len = 0;
 	if (n == 0)

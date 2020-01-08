@@ -41,5 +41,6 @@ t_flags	parse_l_mod(const char **format, t_flags flags)
 			flags.l_mod += 3;
 		(*format)++;
 	}
+	flags.conv = *(*format);
 	return (flags);
 }

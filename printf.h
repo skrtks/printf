@@ -51,14 +51,14 @@ int				x_print(va_list args, t_flags flags);
 int				p_print(va_list args, t_flags flags);
 int				u_print(va_list args, t_flags flags);
 
-int				int_length(long n);
+int				int_length(long long n);
 char			*ft_itoa_base(long long value, int base);
 char			*set_case(char *str, t_flags flags);
 int				set_string(char **dst, char *src, int i);
 t_flags			init_flags(void);
 size_t			get_index(const char *str, char c);
-int				sep_calculator(long num);
-char			*set_separators(long num, t_length len, char *str,
+int				sep_calculator(long long num);
+char			*set_separators(long long num, t_length len, char *str,
 								int start);
 char			*set_num(t_flags flags, char *str, char *num_str,
 						t_index *index);

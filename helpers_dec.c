@@ -15,9 +15,9 @@
 #include <stdarg.h>
 #include <locale.h>
 
-int				sep_calculator(long num)
+int				sep_calculator(long long num)
 {
-	unsigned int	len;
+	unsigned long long	len;
 
 	len = 0;
 	if (num < 0)
@@ -30,7 +30,8 @@ int				sep_calculator(long num)
 	return (len);
 }
 
-char			*set_separators(long num, t_length len, char *str, int start)
+char			*set_separators(long long num, t_length len,
+								char *str, int start)
 {
 	int				i;
 	struct lconv	*lc;
