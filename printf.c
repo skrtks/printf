@@ -65,7 +65,7 @@ static void		parse_other(const char **format, va_list args, t_flags *flags)
 		flags->width = va_arg(args, int);
 	else if (!ft_strrchr("cspdiuxX%.", *(*format)))
 		flags->width = ft_atoi(*format);
-	while (!ft_strrchr("cspdiuxX%.", *(*format)))
+	while (!ft_strrchr("cspdiuxXlh%.", *(*format)))
 		(*format)++;
 	if (*(*format) == '.')
 	{
@@ -77,7 +77,7 @@ static void		parse_other(const char **format, va_list args, t_flags *flags)
 		else if (!ft_strrchr("cspdiuxX%", *(*format)))
 			flags->prec = ft_atoi(*format);
 	}
-	while (!ft_strrchr("cspdiuxX%", *(*format)))
+	while (!ft_strrchr("cspdiuxXlh%", *(*format)))
 		(*format)++;
 }
 
@@ -123,6 +123,7 @@ int				ft_printf(const char *format, ...)
 			format++;
 			flags = parse_flags(&format);
 			parse_other(&format, args, &flags);
+			flags = parse_l_mod(&format, flags);
 			flags.conv = *format;
 			output += convert(&format, args, flags);
 		}

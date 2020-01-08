@@ -88,15 +88,14 @@ static void		fill_width(t_flags flags, t_length len, t_index *index,
 		ft_memset(((*str) + len.t_numlen), flags.zero, len.w_padlen);
 }
 
-char			*create_dec_string(t_flags flags, t_length len, long num)
+char			*create_dec_string(t_flags flags, t_length len, long long num)
 {
 	char	*str;
 	char	*num_str;
 	t_index	index;
 
 	str = ft_calloc((len.total_len + 1), sizeof(char));
-	num_str = (flags.conv == 'u' ? ft_itoa_uns(num) :
-				ft_itoa_base((int)num, 10));
+	num_str = ft_itoa_base(num, 10);
 	if (!str || !num_str)
 		return (NULL);
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');

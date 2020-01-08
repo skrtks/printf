@@ -15,7 +15,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-static t_length	get_length(t_flags flags, long num)
+static t_length	get_length(t_flags flags, long long num)
 {
 	t_length len;
 
@@ -37,12 +37,12 @@ static t_length	get_length(t_flags flags, long num)
 
 int				i_print(va_list args, t_flags flags)
 {
-	long		num;
+	long long	num;
 	t_length	len;
 	int			slen;
 	char		*str;
 
-	num = (long)va_arg(args, int);
+	num = get_dec(flags, args);
 	flags.apo = (flags.apo == 1 ? 1 : 0);
 	len = get_length(flags, num);
 	str = create_dec_string(flags, len, num);
