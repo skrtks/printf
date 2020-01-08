@@ -29,7 +29,7 @@ int	c_print(va_list args, t_flags flags)
 	{
 		width = malloc((flags.width) * sizeof(char));
 		if (!width)
-			return (output);
+			return (-1);
 		width[flags.width - 1] = '\0';
 		output += flags.width - 1;
 		flags.zero = (flags.zero == 1 && flags.minus == -1 ? '0' : ' ');

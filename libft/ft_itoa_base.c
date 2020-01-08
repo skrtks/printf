@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_itoa.c                                          :+:    :+:            */
+/*   ft_itoa_base.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: skorteka <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,9 +12,9 @@
 
 #include <stdlib.h>
 
-static size_t	ft_length(unsigned int n)
+static size_t	ft_length(long long n, int base)
 {
-	unsigned int	len;
+	long long	len;
 
 	if (n > 0)
 		len = 0;
@@ -25,50 +25,46 @@ static size_t	ft_length(unsigned int n)
 	}
 	while (n >= 1)
 	{
-		n = n / 10;
+		n = n / base;
 		len++;
 	}
 	return (len);
 }
 
-static void		ft_convert(char *str, unsigned int input, size_t len)
+static void		set_sign(long long num, int base, char **ptr)
 {
-	size_t			i;
-	unsigned int	rem;
-
-	i = len - 1;
-	if (input == 0)
+	if (num < 0 && base == 10)
 	{
-		str[i] = '0';
-		str[i + 1] = '\0';
-		return ;
-	}
-	if (input < 0)
-	{
-		str[0] = '-';
-		input = input * -1;
-	}
-	str[len] = '\0';
-	while (input > 0)
-	{
-		rem = input % 10;
-		str[i] = rem + '0';
-		i--;
-		input = input / 10;
+		(*ptr)--;
+		*(*ptr) = '-';
 	}
 }
 
-char			*ft_itoa_uns(int n)
+char			*ft_itoa_base(long long value, int base)
 {
-	char			*str;
-	unsigned int	input;
-	size_t			len;
+	char		*set;
+	char		*ptr;
+	long long	num;
 
-	input = (unsigned int)n;
-	len = ft_length(input);
-	str = malloc((len + 1) * sizeof(char));
-	if (!str)
+	ptr = malloc((ft_length(value, base) + 1) * sizeof(char));
+	if (!ptr)
 		return (NULL);
-	ft_convert(str, input, len);
-	return (str);
+	set = "0123456789abcdef";
+	ptr += ft_length(value, base);
+	*ptr = '\0';
+	num = value;
+	value *= ((value < 0 && base == 10) ? -1 : 1);
+	if (value == 0)
+	{
+		ptr--;
+		*ptr = set[value % base];
+	}
+	while (value > 0)
+	{
+		ptr--;
+		*ptr = set[value % base];
+		value /= base;
+	}
+	set_sign(num, base, &ptr);
+	return (ptr);
 }

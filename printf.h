@@ -12,7 +12,6 @@
 
 #ifndef PRINTF_H
 # define PRINTF_H
-# include <stdlib.h>
 # include <stdarg.h>
 
 typedef struct	s_flags
@@ -25,6 +24,7 @@ typedef struct	s_flags
 	int			plus;
 	int			width;
 	int			prec;
+	int			l_mod;
 	char		conv;
 }				t_flags;
 
@@ -49,20 +49,20 @@ int				s_print(va_list args, t_flags flags);
 int				i_print(va_list args, t_flags flags);
 int				x_print(va_list args, t_flags flags);
 int				p_print(va_list args, t_flags flags);
-
-int				int_length(long n);
-char			*ft_itoa_base(long long value, int base);
-char			*ft_itoa_uns(int n);
 int				u_print(va_list args, t_flags flags);
+
+int				int_length(long long n);
 char			*set_case(char *str, t_flags flags);
 int				set_string(char **dst, char *src, int i);
 t_flags			init_flags(void);
 size_t			get_index(const char *str, char c);
-int				sep_calculator(long num);
-char			*set_separators(long num, t_length len, char *str,
+int				sep_calculator(long long num);
+char			*set_separators(long long num, t_length len, char *str,
 								int start);
 char			*set_num(t_flags flags, char *str, char *num_str,
 						t_index *index);
-char			*create_dec_string(t_flags flags, t_length len, long num);
+char			*create_dec_string(t_flags flags, t_length len, long long num);
+t_flags			parse_l_mod(const char **format, t_flags flags);
+long long		get_dec(t_flags flags, va_list args);
 
 #endif

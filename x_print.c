@@ -15,7 +15,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-static t_length	get_length(t_flags flags, unsigned int num)
+static t_length	get_length(t_flags flags, unsigned long long num)
 {
 	t_length	len;
 	char		*str;
@@ -92,17 +92,17 @@ static char		*create_string(t_flags flags, t_length len,
 
 int				x_print(va_list args, t_flags flags)
 {
-	unsigned int	num;
-	t_length		len;
-	int				slen;
-	char			*str;
+	unsigned long long	num;
+	t_length			len;
+	int					slen;
+	char				*str;
 
-	num = (unsigned int)va_arg(args, int);
+	num = get_dec(flags, args);
 	flags.hash = (flags.hash == 1 && num != 0 ? 1 : 0);
 	len = get_length(flags, num);
 	str = create_string(flags, len, num);
 	if (!str)
-		return (0);
+		return (-1);
 	str = set_case(str, flags);
 	slen = ft_strlen(str);
 	write(1, str, slen);

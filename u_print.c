@@ -15,10 +15,11 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-static t_length	get_length(t_flags flags, unsigned int num)
+static t_length	get_length(t_flags flags, long long num)
 {
 	t_length len;
 
+	len.sign = (num < 0 ? '-' : '+');
 	len.numlen = ((flags.prec == 0 && num == 0) ? 0 : int_length(num));
 	len.numlen += (flags.apo == 1 ? sep_calculator(num) : 0);
 	len.p_padlen = ((flags.prec != -1 && flags.prec >= len.numlen) ?
@@ -34,17 +35,17 @@ static t_length	get_length(t_flags flags, unsigned int num)
 
 int				u_print(va_list args, t_flags flags)
 {
-	unsigned int	num;
+	long long		num;
 	t_length		len;
 	int				slen;
 	char			*str;
 
-	num = (unsigned int)va_arg(args, int);
+	num = get_dec(flags, args);
 	flags.apo = (flags.apo == 1 ? 1 : 0);
 	len = get_length(flags, num);
 	str = create_dec_string(flags, len, num);
 	if (!str)
-		return (0);
+		return (-1);
 	slen = ft_strlen(str);
 	write(1, str, slen);
 	if (str)
