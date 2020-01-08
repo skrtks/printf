@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = helpers.c helpers_general.c helpers_dec.c ft_itoa_base.c ft_itoa_uns.c \
+SRCS = utils_1.c utils_2.c utils_3.c \
 		p_print.c x_print.c c_print.c u_print.c s_print.c i_print.c printf.c
 CC = gcc
 CFLAGS = -I. -Wall -Werror -Wextra

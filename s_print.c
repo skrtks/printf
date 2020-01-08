@@ -25,7 +25,7 @@ static int	print_width_prec(t_flags flags, char *str, int len)
 	{
 		width = malloc((flags.width - len + 1) * sizeof(char));
 		if (!width)
-			return (0);
+			return (-1);
 		width[flags.width - len] = '\0';
 		ft_memset(width, ' ', flags.width - len);
 		ft_putstr_fd(width, 1);
