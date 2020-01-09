@@ -64,16 +64,7 @@ static void		parse_other(const char **format, va_list args, t_flags *flags)
 	int temp;
 
 	if (*(*format) == '*')
-	{
-		temp = va_arg(args, int);
-		if (temp < 0)
-		{
-			flags->minus = 1;
-			flags->width = temp * -1;
-		}
-		else
-			flags->width = temp;
-	}
+		*flags = parse_starwidth(*flags, args);
 	else if (!ft_strrchr("cspdiuxX%.", *(*format)))
 		flags->width = ft_atoi(*format);
 	while (!ft_strrchr("cspdiuxXlh%.", *(*format)))

@@ -66,6 +66,6 @@ char			*create_dec_string(t_flags flags, t_length len, long long num);
 t_flags			parse_l_mod(const char **format, t_flags flags);
 long long		get_dec(t_flags flags, va_list args);
 
-// t_flags *get_star(t_flags *flags, va_list args, char *format);
+t_flags parse_starwidth(t_flags flags, va_list args);
 
 #endif
