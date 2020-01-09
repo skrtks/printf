@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 test: $(OBJS) $(NAME)
-	$(CC) $(CFLAGS) -g -L. -lftprintf $(SRCS) main.c -o printf
+	$(CC) -I. -g -L. -lftprintf $(SRCS) main.c -o printf
 
 asan: $(OBJS) $(NAME)
 	$(CC) $(CFLAGS) -fsanitize=address -O1 -fno-omit-frame-pointer \
