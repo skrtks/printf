@@ -17,10 +17,10 @@
 
 static t_length	get_length(t_flags flags, unsigned long long num)
 {
-	t_length len;
+	t_length	len;
 	char		*str;
 
-	str = ft_itoa_base_uns(num, 10);
+	str = itoa_b_uns(num, 10);
 	len.sign = '+';
 	len.numlen = ((flags.prec == 0 && num == 0) ? 0 : ft_strlen(str));
 	len.numlen += (flags.apo == 1 ? sep_calculator(num) : 0);
@@ -32,7 +32,7 @@ static t_length	get_length(t_flags flags, unsigned long long num)
 	len.w_padlen = ((flags.width != -1 && flags.width >= len.t_numlen) ?
 					flags.width - len.t_numlen : 0);
 	len.total_len = len.t_numlen + len.w_padlen;
-	free (str);
+	free(str);
 	return (len);
 }
 

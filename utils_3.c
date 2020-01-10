@@ -77,37 +77,3 @@ size_t		get_index(const char *str, char c)
 		l++;
 	return (l);
 }
-
-unsigned long long	get_dec_uns(t_flags flags, va_list args)
-{
-	unsigned long long num;
-
-	if (flags.l_mod == 1)
-		num = (unsigned long)va_arg(args, unsigned long);
-	else if (flags.l_mod == 2)
-		num = (unsigned long long)va_arg(args, unsigned long long);
-	else if (flags.l_mod == 3)
-		num = (unsigned short)va_arg(args, void*);
-	else if (flags.l_mod == 6)
-		num = (unsigned char)va_arg(args, void*);
-	else
-		num = (unsigned long long)va_arg(args, unsigned int);
-	return (num);
-}
-
-long long	get_dec(t_flags flags, va_list args)
-{
-	long long num;
-
-	if (flags.l_mod == 1)
-		num = (long)va_arg(args, long);
-	else if (flags.l_mod == 2)
-		num = (long long)va_arg(args, long long);
-	else if (flags.l_mod == 3)
-		num = (short)va_arg(args, void*);
-	else if (flags.l_mod == 6)
-		num = (signed char)va_arg(args, void*);
-	else
-		num = (long long)va_arg(args, int);
-	return (num);
-}
