@@ -77,3 +77,9 @@ size_t		get_index(const char *str, char c)
 		l++;
 	return (l);
 }
+
+int			free_va_end(va_list args)
+{
+	va_end(args);
+	return (-1);
+}

@@ -123,7 +123,7 @@ int				ft_printf(const char *format, ...)
 			flags = parse_l_mod(&format, flags);
 			convert_out = convert(&format, args, flags);
 			if (convert_out == -1)
-				return (-1);
+				return (free_va_end(args));
 			output += convert_out;
 		}
 	}

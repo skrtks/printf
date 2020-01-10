@@ -70,5 +70,6 @@ unsigned long long	get_dec_uns(t_flags flags, va_list args);
 char				*itoa_b(long long value, int base);
 char				*itoa_b_uns(unsigned long long value, int base);
 t_flags				parse_starwidth(t_flags flags, va_list args);
+int					free_va_end(va_list args);
 
 #endif
