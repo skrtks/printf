@@ -20,7 +20,8 @@ static t_length	get_length(t_flags flags, unsigned long long num)
 	t_length	len;
 	char		*str;
 
-	str = ft_itoa_base(num, 16);
+	str = ft_itoa_base_uns(num, 16);
+	len.sign = '+';
 	len.numlen = ((flags.prec == 0 && num == 0) ? 0 : ft_strlen(str));
 	len.p_padlen = ((flags.prec != -1 && flags.prec >= len.numlen) ?
 					flags.prec - len.numlen : 0);
@@ -72,7 +73,7 @@ static char		*create_string(t_flags flags, t_length len,
 	str = malloc((len.total_len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
-	num_str = ft_itoa_base(num, 16);
+	num_str = ft_itoa_base_uns(num, 16);
 	if (!num_str)
 		return (NULL);
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');
@@ -97,7 +98,7 @@ int				x_print(va_list args, t_flags flags)
 	int					slen;
 	char				*str;
 
-	num = get_dec(flags, args);
+	num = get_dec_uns(flags, args);
 	flags.hash = (flags.hash == 1 && num != 0 ? 1 : 0);
 	len = get_length(flags, num);
 	str = create_string(flags, len, num);

@@ -17,7 +17,7 @@
 
 int				sep_calculator(long long num)
 {
-	unsigned long long	len;
+	long long	len;
 
 	len = 0;
 	if (num < 0)
@@ -96,7 +96,7 @@ char			*create_dec_string(t_flags flags, t_length len, long long num)
 	t_index	index;
 
 	str = ft_calloc((len.total_len + 1), sizeof(char));
-	num_str = ft_itoa_base(num, 10);
+	num_str = (flags.conv == 'u' ? ft_itoa_base_uns(num, 10) : ft_itoa_base(num, 10));
 	if (!str || !num_str)
 		return (NULL);
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');

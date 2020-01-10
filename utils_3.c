@@ -23,6 +23,11 @@ int			int_length(long long n)
 		return (1);
 	if (n < 0)
 		n = n * -1;
+	while (n < 0)
+	{
+		n = n / 10;
+		len++;
+	}
 	while (n >= 1)
 	{
 		n = n / 10;
@@ -73,29 +78,36 @@ size_t		get_index(const char *str, char c)
 	return (l);
 }
 
+unsigned long long	get_dec_uns(t_flags flags, va_list args)
+{
+	unsigned long long num;
+
+	if (flags.l_mod == 1)
+		num = (unsigned long)va_arg(args, unsigned long);
+	else if (flags.l_mod == 2)
+		num = (unsigned long long)va_arg(args, unsigned long long);
+	else if (flags.l_mod == 3)
+		num = (unsigned short)va_arg(args, void*);
+	else if (flags.l_mod == 6)
+		num = (unsigned char)va_arg(args, void*);
+	else
+		num = (unsigned long long)va_arg(args, unsigned int);
+	return (num);
+}
+
 long long	get_dec(t_flags flags, va_list args)
 {
 	long long num;
 
-	if (flags.l_mod == 1 && (flags.conv == 'i' || flags.conv == 'd'))
+	if (flags.l_mod == 1)
 		num = (long)va_arg(args, long);
-	else if (flags.l_mod == 2 && (flags.conv == 'i' || flags.conv == 'd'))
+	else if (flags.l_mod == 2)
 		num = (long long)va_arg(args, long long);
-	else if (flags.l_mod == 3 && (flags.conv == 'i' || flags.conv == 'd'))
+	else if (flags.l_mod == 3)
 		num = (short)va_arg(args, void*);
-	else if (flags.l_mod == 6 && (flags.conv == 'i' || flags.conv == 'd'))
+	else if (flags.l_mod == 6)
 		num = (signed char)va_arg(args, void*);
-	else if (flags.conv == 'i' || flags.conv == 'd')
-		num = (long long)va_arg(args, int);
-	else if (flags.l_mod == 1 && (flags.conv != 'i' || flags.conv != 'd'))
-		num = (unsigned long)va_arg(args, unsigned long);
-	else if (flags.l_mod == 2 && (flags.conv != 'i' || flags.conv != 'd'))
-		num = (unsigned long long)va_arg(args, unsigned long long);
-	else if (flags.l_mod == 3 && (flags.conv != 'i' || flags.conv != 'd'))
-		num = (unsigned short)va_arg(args, void*);
-	else if (flags.l_mod == 6 && (flags.conv != 'i' || flags.conv != 'd'))
-		num = (unsigned char)va_arg(args, void*);
 	else
-		num = (unsigned long long)va_arg(args, unsigned int);
+		num = (long long)va_arg(args, int);
 	return (num);
 }

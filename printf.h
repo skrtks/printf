@@ -65,6 +65,9 @@ char			*set_num(char *str, char *num_str,
 char			*create_dec_string(t_flags flags, t_length len, long long num);
 t_flags			parse_l_mod(const char **format, t_flags flags);
 long long		get_dec(t_flags flags, va_list args);
+unsigned long long	get_dec_uns(t_flags flags, va_list args);
+char			*ft_itoa_base(long long value, int base);
+char			*ft_itoa_base_uns(unsigned long long value, int base);
 
 t_flags parse_starwidth(t_flags flags, va_list args);
 
