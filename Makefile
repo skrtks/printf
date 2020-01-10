@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = utils_1.c utils_2.c utils_3.c \
+SRCS = utils_1.c utils_2.c utils_3.c ft_itoa_base.c\
 		p_print.c x_print.c c_print.c u_print.c s_print.c i_print.c printf.c
 CC = gcc
 CFLAGS = -I. -Wall -Werror -Wextra
@@ -21,15 +21,16 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	cd libft && make
-	cp ./libft/libft.a .
-	mv libft.a $(NAME)
+	cp ./libft/libft.a ./$(NAME)
 	ar rc $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+bonus: $(NAME)
+
 test: $(OBJS) $(NAME)
-	$(CC) $(CFLAGS) -g -L. -lftprintf $(SRCS) main.c -o printf
+	$(CC) -I. -g -L. -lftprintf $(SRCS) main.c -o printf
 
 asan: $(OBJS) $(NAME)
 	$(CC) $(CFLAGS) -fsanitize=address -O1 -fno-omit-frame-pointer \

@@ -23,6 +23,26 @@ static size_t	ft_length(long long n, int base)
 		len = 1;
 		n = n * -1;
 	}
+	while (n < 0)
+	{
+		n = n / base;
+		len++;
+	}
+	while (n >= 1)
+	{
+		n = n / base;
+		len++;
+	}
+	return (len);
+}
+
+static size_t	ft_length_uns(unsigned long long n, int base)
+{
+	long long	len;
+
+	len = 0;
+	if (n == 0)
+		return (1);
 	while (n >= 1)
 	{
 		n = n / base;
@@ -40,7 +60,7 @@ static void		set_sign(long long num, int base, char **ptr)
 	}
 }
 
-char			*ft_itoa_base(long long value, int base)
+char			*itoa_b(long long value, int base)
 {
 	char		*set;
 	char		*ptr;
@@ -59,12 +79,40 @@ char			*ft_itoa_base(long long value, int base)
 		ptr--;
 		*ptr = set[value % base];
 	}
-	while (value > 0)
+	while (value != 0)
+	{
+		ptr--;
+		*ptr = (value < 0 ? set[(value % base) * -1] : set[value % base]);
+		value /= base;
+	}
+	set_sign(num, base, &ptr);
+	return (ptr);
+}
+
+char			*itoa_b_uns(unsigned long long value, int base)
+{
+	char				*set;
+	char				*ptr;
+	unsigned long long	num;
+
+	ptr = malloc((ft_length_uns(value, base) + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	set = "0123456789abcdef";
+	ptr += ft_length_uns(value, base);
+	*ptr = '\0';
+	num = value;
+	value *= ((value < 0 && base == 10) ? -1 : 1);
+	if (value == 0)
+	{
+		ptr--;
+		*ptr = set[value % base];
+	}
+	while (value != 0)
 	{
 		ptr--;
 		*ptr = set[value % base];
 		value /= base;
 	}
-	set_sign(num, base, &ptr);
 	return (ptr);
 }

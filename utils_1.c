@@ -17,7 +17,7 @@
 
 int				sep_calculator(long long num)
 {
-	unsigned long long	len;
+	long long	len;
 
 	len = 0;
 	if (num < 0)
@@ -49,10 +49,10 @@ char			*set_separators(long long num, t_length len,
 	return (str);
 }
 
-char			*set_num(t_flags flags, char *str, char *num_str,
+char			*set_num(char *str, char *num_str,
 						t_index *index)
 {
-	while (num_str[index->j] && flags.prec != 0)
+	while (num_str[index->j])
 	{
 		if (str[index->i] == '\0')
 		{
@@ -96,7 +96,7 @@ char			*create_dec_string(t_flags flags, t_length len, long long num)
 	t_index	index;
 
 	str = ft_calloc((len.total_len + 1), sizeof(char));
-	num_str = ft_itoa_base(num, 10);
+	num_str = (flags.conv == 'u' ? itoa_b_uns(num, 10) : itoa_b(num, 10));
 	if (!str || !num_str)
 		return (NULL);
 	flags.zero = ((flags.prec == -1 && flags.zero == 1) ? '0' : ' ');
@@ -109,7 +109,8 @@ char			*create_dec_string(t_flags flags, t_length len, long long num)
 		index.j = ((len.sign == '-') ? 1 : 0);
 	if (flags.apo == 1)
 		str = set_separators(num, len, str, index.i);
-	set_num(flags, str, num_str, &index);
+	if (!(flags.prec == 0 && num == 0))
+		set_num(str, num_str, &index);
 	free(num_str);
 	if (flags.minus == 1)
 		index.i += len.w_padlen;

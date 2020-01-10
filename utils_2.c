@@ -14,7 +14,7 @@
 #include "printf.h"
 #include <stdarg.h>
 
-t_flags	init_flags(void)
+t_flags				init_flags(void)
 {
 	t_flags flags;
 
@@ -31,7 +31,7 @@ t_flags	init_flags(void)
 	return (flags);
 }
 
-t_flags	parse_l_mod(const char **format, t_flags flags)
+t_flags				parse_l_mod(const char **format, t_flags flags)
 {
 	while (ft_strrchr("lh", *(*format)))
 	{
@@ -43,4 +43,53 @@ t_flags	parse_l_mod(const char **format, t_flags flags)
 	}
 	flags.conv = *(*format);
 	return (flags);
+}
+
+t_flags				parse_starwidth(t_flags flags, va_list args)
+{
+	int temp;
+
+	temp = va_arg(args, int);
+	if (temp < 0)
+	{
+		flags.minus = 1;
+		flags.width = temp * -1;
+	}
+	else
+		flags.width = temp;
+	return (flags);
+}
+
+unsigned long long	get_dec_uns(t_flags flags, va_list args)
+{
+	unsigned long long num;
+
+	if (flags.l_mod == 1)
+		num = (unsigned long)va_arg(args, unsigned long);
+	else if (flags.l_mod == 2)
+		num = (unsigned long long)va_arg(args, unsigned long long);
+	else if (flags.l_mod == 3)
+		num = (unsigned short)va_arg(args, void*);
+	else if (flags.l_mod == 6)
+		num = (unsigned char)va_arg(args, void*);
+	else
+		num = (unsigned long long)va_arg(args, unsigned int);
+	return (num);
+}
+
+long long			get_dec(t_flags flags, va_list args)
+{
+	long long num;
+
+	if (flags.l_mod == 1)
+		num = (long)va_arg(args, long);
+	else if (flags.l_mod == 2)
+		num = (long long)va_arg(args, long long);
+	else if (flags.l_mod == 3)
+		num = (short)va_arg(args, void*);
+	else if (flags.l_mod == 6)
+		num = (signed char)va_arg(args, void*);
+	else
+		num = (long long)va_arg(args, int);
+	return (num);
 }
