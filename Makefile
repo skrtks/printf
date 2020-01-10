@@ -21,12 +21,13 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	cd libft && make
-	cp ./libft/libft.a .
-	mv libft.a $(NAME)
+	cp ./libft/libft.a ./$(NAME)
 	ar rc $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+bonus: $(NAME)
 
 test: $(OBJS) $(NAME)
 	$(CC) -I. -g -L. -lftprintf $(SRCS) main.c -o printf
