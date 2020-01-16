@@ -56,7 +56,6 @@ int					int_length(long long n);
 char				*set_case(char *str, t_flags flags);
 int					set_string(char **dst, char *src, int i);
 t_flags				init_flags(void);
-size_t				get_index(const char *str, char c);
 int					sep_calculator(long long num);
 char				*set_separators(long long num, t_length len, char *str,
 									int start);

@@ -51,7 +51,6 @@ int				u_print(va_list args, t_flags flags)
 		return (-1);
 	slen = ft_strlen(str);
 	write(1, str, slen);
-	if (str)
-		free(str);
+	free(str);
 	return (slen);
 }

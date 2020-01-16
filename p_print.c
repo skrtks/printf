@@ -53,7 +53,6 @@ static char		*create_string(t_flags flags, t_length len,
 	char	*str;
 	char	*num_str;
 	int		i;
-	int		j;
 
 	str = malloc((len.total_len + 1) * sizeof(char));
 	num_str = itoa_b_uns(num, 16);
@@ -63,7 +62,6 @@ static char		*create_string(t_flags flags, t_length len,
 	fill_width(flags, len, &i, &str);
 	if (flags.zero == ' ')
 		i = set_string(&str, "0x", i);
-	j = 0;
 	if (flags.prec != 0)
 		i = set_string(&str, num_str, i);
 	if (flags.minus == 1)
@@ -87,7 +85,6 @@ int				p_print(va_list args, t_flags flags)
 		return (-1);
 	slen = ft_strlen(str);
 	write(1, str, slen);
-	if (str)
-		free(str);
+	free(str);
 	return (slen);
 }

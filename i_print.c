@@ -19,9 +19,9 @@ static t_length	get_length(t_flags flags, long long num)
 {
 	t_length len;
 
-	len.sign = (num < 0 ? '-' : '+');
-	len.sign = ((flags.space == 1 && flags.plus == -1 && num >= 0)
-				? ' ' : len.sign);
+	len.sign = num < 0 ? '-' : '+';
+	len.sign = (flags.space == 1 && flags.plus == -1 && num >= 0)
+				? ' ' : len.sign;
 	len.numlen = ((flags.prec == 0 && num == 0) ? 0 : int_length(num));
 	len.numlen += (flags.apo == 1 ? sep_calculator(num) : 0);
 	len.p_padlen = ((flags.prec != -1 && flags.prec >= len.numlen) ?
@@ -50,7 +50,6 @@ int				i_print(va_list args, t_flags flags)
 		return (-1);
 	slen = ft_strlen(str);
 	write(1, str, slen);
-	if (str)
-		free(str);
+	free(str);
 	return (slen);
 }

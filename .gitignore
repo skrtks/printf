@@ -51,8 +51,17 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# System
 .DS_Store
+
+# CLion
+cmake-build-*/
+.idea/
+
+# VSCode
+.vscode/
+
+# MISC
 pft/
 main.c
-.vscode/
 test-printf/

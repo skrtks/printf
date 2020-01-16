@@ -68,16 +68,6 @@ int			set_string(char **dst, char *src, int i)
 	return (i);
 }
 
-size_t		get_index(const char *str, char c)
-{
-	size_t l;
-
-	l = 0;
-	while (str[l] != '\0' && str[l] != c)
-		l++;
-	return (l);
-}
-
 int			free_va_end(va_list args)
 {
 	va_end(args);

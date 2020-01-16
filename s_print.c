@@ -55,5 +55,4 @@ int			s_print(va_list args, t_flags flags)
 	}
 	else
 		return (print_width_prec(flags, str, len));
-	return (0);
 }
