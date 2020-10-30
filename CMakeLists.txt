@@ -5,8 +5,8 @@ project(printf)
 
 include_directories(libft)
 include_directories(.)
-add_executable(printf main.c utils_1.c utils_2.c utils_3.c ft_itoa_base.c
-        p_print.c x_print.c c_print.c u_print.c s_print.c i_print.c printf.c)
+add_executable(printf main.c srcs/utils_1.c srcs/utils_2.c srcs/utils_3.c srcs/ft_itoa_base.c
+        srcs/p_print.c srcs/x_print.c srcs/c_print.c srcs/u_print.c srcs/s_print.c srcs/i_print.c srcs/printf.c)
 add_library(libft STATIC libft/ft_atoi.c
         libft/ft_bzero.c
         libft/ft_calloc.c

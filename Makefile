@@ -10,10 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = utils_1.c utils_2.c utils_3.c ft_itoa_base.c\
-		p_print.c x_print.c c_print.c u_print.c s_print.c i_print.c printf.c
+SRCS = srcs/utils_1.c srcs/utils_2.c srcs/utils_3.c srcs/ft_itoa_base.c\
+		srcs/p_print.c srcs/x_print.c srcs/c_print.c srcs/u_print.c srcs/s_print.c srcs/i_print.c srcs/printf.c
 CC = gcc
-CFLAGS = -I. -Wall -Werror -Wextra
+CFLAGS = -Iincludes -Wall -Werror -Wextra
 NAME = libftprintf.a
 OBJS := $(SRCS:.c=.o)
 
